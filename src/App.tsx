@@ -9,18 +9,35 @@ function App() {
   const [choices, setChoices] = useState(['ウィスキー', 'ビール'])
 
   const selectMenu = (drink: string, key: number) => {
-    if ('私の好みに合わせてオススメを教えて'  === choices[key]) {
-      setWhisky(true)
-      setMessage('燻製のようなスモーキーな香りがあっても大丈夫でしょうか？')
-      setChoices(['大丈夫', '苦手かな'])
-      setDisplayChoices(false)
-    }
-
     if ('ウィスキー' === choices[key]) {
       console.log('whisky')
       setWhisky(true)
       setMessage('どんなウィスキーにしますか？')
-      setChoices(['好きな味を言うから、オススメ教えて', 'ウィスキーのジャンルで選びたいな'])
+      setChoices(['私の好みに合わせておすすめ教えて', 'マスターのおすすめを教えて'])
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー
+    if ('私の好みに合わせておすすめ教えて' === choices[key]) {
+      setWhisky(true)
+      setMessage('では、いくつか質問させて下さい。\nお客さんは、クセが少なく飲みやすいウィスキーがお好みでしょうか？')
+      setChoices(['クセのない方が好き', 'クセがあっても大丈夫'])
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー > 私の好みに合わせておすすめ教えて
+    if ('クセのない方が好き' === choices[key]) {
+      setWhisky(true)
+      setMessage('どんな味わいのウィスキーが飲みたいでしょうか？')
+      setChoices(['シンプルでスッキリしたウィスキー', 'マイルドで飲みやすいウィスキー', '華やかな香りのウィスキー'])
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー > 私の好みに合わせておすすめ教えて > シンプルでスッキリしたウィスキー
+    if ('シンプルでスッキリしたウィスキー' === choices[key]) {
+      setWhisky(true)
+      setMessage('サントリーの角瓶がおすすめです。\n香りやコクのバランスがとれており、ドライな口当たりが特徴です。\n飲み方は、ソーダ割りが個人的におすすめですね。\nドライでサッパリしているのでお食事にも合わせやすいです。')
+      // setChoices(['シンプルでスッキリしたウィスキー', 'マイルドで飲みやすいウィスキー', '華やかな香りのウィスキー'])
       setDisplayChoices(false)
     }
   }
@@ -37,7 +54,7 @@ function App() {
     for (let i = 0; i < (length + 1); i++) {
       setDisplayMessage(message.slice(0, i))
       console.log(i)
-      await sleep(50);
+      await sleep(20);
     }
     await sleep(100);
     setDisplayChoices(true)
@@ -49,7 +66,12 @@ function App() {
 
   return (
     <div className="App">
-      バーテンダー: {displayMessage}
+      バーテンダー:<br />
+      { displayMessage.split('\n').map((item) => (
+          <div key={item}>
+            {item}
+          </div>
+        )) }
     <section id="bartender">
     </section>
     {choices.map((choice, key) => (
