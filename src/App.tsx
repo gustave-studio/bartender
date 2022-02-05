@@ -66,20 +66,26 @@ function App() {
 
   return (
     <div className="App">
-      バーテンダー:<br />
-      { displayMessage.split('\n').map((item) => (
-          <div key={item}>
-            {item}
-          </div>
-        )) }
-    <section id="bartender">
-    </section>
-    {choices.map((choice, key) => (
-          <span key={key} style={{ display: displayChoices ? '' : 'none' }}>
-            <button key={key} onClick={() => selectMenu(choice, key)}>{choice}</button>
-            <br />
-          </span>
-        ))}
+      <div className="container">
+        <div className="main_screen">
+        </div>
+        <div className="message_window">
+          <div className="message">
+            バーテンダー:
+            { displayMessage.split('\n').map((item) => (
+                <div key={item}>
+                  {item}
+                </div>
+              )) }
+            {choices.map((choice, key) => (
+              <span key={key} style={{ display: displayChoices ? '' : 'none' }}>
+                <button key={key} onClick={() => selectMenu(choice, key)}>{choice}</button>
+                <br />
+              </span>
+            ))}
+           </div>
+         </div>
+       </div>
     </div>
   );
 }

@@ -1,1 +1,51 @@
+body {
+  background-color: #000000;
+}
 
+.container {
+  width: 100%;
+  max-width: 750px;
+  margin: auto;
+}
+
+.main_screen {
+  width: 100%;
+  height: 350px;
+  background-color: aqua; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background: url("/public/proto_vr_bar.png") center center no-repeat;
+  background-size: cover;
+}
+
+.message_window {
+  width: 100%;
+  color: #FFFFFF;
+  font-family: 'PixelMplus12-Regular';
+  font-size: 18px;
+  line-height: 40px;
+  background-color: #000000;
+  border: solid 3px #333333;
+}
+
+.message {
+  margin: 10px;
+}
+
+.message_window button {
+  color: #FFFFFF;
+  font-family: 'PixelMplus12-Regular';
+  font-size: 18px;
+  line-height: 30px;
+  background-color: #000000;
+  padding: 0.5em 1em;
+  margin: 10px;
+  border: solid 3px #333333;
+}
+
+/* Webフォント読み込み */
+@font-face {
+	font-family: 'PixelMplus12-Regular';
+	src: url('/public/PixelMplus12-Regular.ttf') format("truetype");
+}
