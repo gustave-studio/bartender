@@ -7,6 +7,9 @@ function App() {
   const [displayChoices, setDisplayChoices] = useState(false)
   const [whisky, setWhisky] = useState(false)
   const [choices, setChoices] = useState(['ウィスキー', 'ビール'])
+  const [result, setResult] = useState(false)
+  const [resultURL, setResultURL] = useState('')
+  const [resultImage, setResultImage] = useState('')
 
   const selectMenu = (drink: string, key: number) => {
     if ('ウィスキー' === choices[key]) {
@@ -37,7 +40,9 @@ function App() {
     if ('シンプルでスッキリしたウィスキー' === choices[key]) {
       setWhisky(true)
       setMessage('サントリーの角瓶がおすすめです。\n香りやコクのバランスがとれており、ドライな口当たりが特徴です。\n飲み方は、ソーダ割りが個人的におすすめですね。\nドライでサッパリしているのでお食事にも合わせやすいです。')
-      // setChoices(['シンプルでスッキリしたウィスキー', 'マイルドで飲みやすいウィスキー', '華やかな香りのウィスキー'])
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B01CXSRJHI')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B01CXSRJHI.09.MZZZZZZZ')
       setDisplayChoices(false)
     }
   }
@@ -67,11 +72,22 @@ function App() {
   return (
     <div className="App">
       <div className="container">
+        <div className="header">
+          <h1>VR Bar</h1>
+        </div>
         <div className="main_screen">
         </div>
         <div className="message_window">
           <div className="message">
-            バーテンダー:
+            バーテンダー： 
+            <div className="result" style={{ display: result ? '' : 'none' }}>
+              <a href={resultURL}>
+                <img src={resultImage} alt="おすすめ結果" />
+                <br />
+                Amazonで購入
+              </a>
+            </div>
+            
             { displayMessage.split('\n').map((item) => (
                 <div key={item}>
                   {item}

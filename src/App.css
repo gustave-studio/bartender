@@ -1,9 +1,23 @@
 body {
   background-color: #000000;
+  background: url("/public/skyscrapers-gee6dac507_1920.jpg");
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  color: #FFFFFF;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  color: #FFFFFF;
 }
 
 .container {
   width: 100%;
+  height: 100px;
   max-width: 750px;
   margin: auto;
 }
@@ -17,16 +31,17 @@ body {
   align-items: center; 
   background: url("/public/proto_vr_bar.png") center center no-repeat;
   background-size: cover;
+  border: solid 1px #333333;
 }
 
 .message_window {
   width: 100%;
   color: #FFFFFF;
   font-family: 'PixelMplus12-Regular';
-  font-size: 18px;
-  line-height: 40px;
+  font-size: 16px;
+  line-height: 30px;
   background-color: #000000;
-  border: solid 3px #333333;
+  border: solid 1px #333333;
 }
 
 .message {
@@ -36,12 +51,22 @@ body {
 .message_window button {
   color: #FFFFFF;
   font-family: 'PixelMplus12-Regular';
-  font-size: 18px;
-  line-height: 30px;
+  font-size: 16px;
+  line-height: 20px;
   background-color: #000000;
   padding: 0.5em 1em;
-  margin: 10px;
+  margin: 5px;
   border: solid 3px #333333;
+}
+
+.result {
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.result a {
+  color: #ffc400;
+  text-decoration: underline;
 }
 
 /* Webフォント読み込み */
