@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import ReactHowler from 'react-howler'
 
 function App() {
   const [message, setMessage] = useState('どういったお酒にしましょうか？')
@@ -75,6 +76,11 @@ function App() {
         <div className="header">
           <h1>VR Bar</h1>
         </div>
+        <ReactHowler
+          src={`${process.env.REACT_APP_SOUND_FILE}`}
+          playing={true}
+        />
+        {console.log(process.env.REACT_APP_SOUND_FILE)}
         <div className="main_screen">
         </div>
         <div className="message_window">
