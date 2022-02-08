@@ -1,6 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './App.css';
 import ReactHowler from 'react-howler'
+import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline'
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
+import Prefectures from './prefectures.js';
+import axios from 'axios';
 
 function App() {
   const [message, setMessage] = useState('どういったお酒にしましょうか？')
@@ -11,6 +15,8 @@ function App() {
   const [result, setResult] = useState(false)
   const [resultURL, setResultURL] = useState('')
   const [resultImage, setResultImage] = useState('')
+
+  const [playing, setPlaying] = useState(false)
 
   const selectMenu = (drink: string, key: number) => {
     if ('ウィスキー' === choices[key]) {
@@ -70,15 +76,65 @@ function App() {
     setInteger()
   }, [message]);
 
+  const [prefecture, setPrefecture] = useState("北海道");
+  const [station, setStation] = useState("札幌");
+  
+  const [responseData, setResponseData] = useState([]);
+
+  const fetchHotpepperAPI = async (x: string, y: string) => {
+    const api_key = process.env.REACT_APP_HOTPEPPER_API_KEY
+    await axios.get(`http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=5&order=4&format=json`)
+    .then((response: any) => {
+      console.log('----response.data')
+      console.log(response.data.results.shop)
+      setResponseData(response.data.results.shop)
+    })
+  }
+
+  const searchRestaurant = async () => {
+    await axios.get(`https://express.heartrails.com/api/json?method=getStations&name=${station}&prefecture=${prefecture}`)
+      .then((response: any) => {
+      fetchHotpepperAPI(response.data.response.station[0].x, response.data.response.station[0].y)
+    })
+  }
+
+  const shopInfo = () => {
+    return (
+      <>
+      <div>その駅周辺だと、この辺のお店ですね</div>
+      <br />
+      <div>
+        { 
+          responseData.map(data => {
+            return (<div>{data['name']}</div>)
+          })
+        }
+      </div>
+      </>
+    )
+  }
+
+  const [isAvailable, setAvailable] = useState(false);
+  const [position, setPosition] = useState({ latitude: null, longitude: null });
+
   return (
     <div className="App">
       <div className="container">
         <div className="header">
           <h1>VR Bar</h1>
+
+        sound<br />
+        {playing
+          ?<PauseCircleOutlineIcon
+            onClick={() => setPlaying((state) => !state)}/>
+          :<PlayCircleOutlineIcon
+            onClick={() => setPlaying((state) => !state)}/>
+        }
         </div>
+
         <ReactHowler
           src={`${process.env.REACT_APP_SOUND_FILE}`}
-          playing={true}
+          playing={playing}
         />
         {console.log(process.env.REACT_APP_SOUND_FILE)}
         <div className="main_screen">
@@ -105,6 +161,26 @@ function App() {
                 <br />
               </span>
             ))}
+
+            <label>都道府県:</label>
+            <select onChange={event => setPrefecture(event.target.value)}>
+              {Prefectures.OPTIONS.map(option => {
+                return (<option value={option}>{option}</option>)
+              })}
+            </select>
+            <br />
+            <label>駅名:</label>
+            <input
+              type="text"
+              value={station}
+              onChange={event => setStation(event.target.value)}
+            />
+            <button onClick={() => searchRestaurant()}>検索</button>
+
+            {
+            responseData.length ?
+            shopInfo() : <p>'b'</p>
+            }
            </div>
          </div>
        </div>

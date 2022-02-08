@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "4.12.3",
+    "@material-ui/icons": "4.11.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -11,6 +13,8 @@
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "@types/react-howler": "^3.7.3",
+    "aios": "^1.0.1",
+    "axios": "^0.25.0",
     "firebase-tools": "10.1.4",
     "material-ui": "0.20.2",
     "react": "^17.0.2",
