@@ -83,10 +83,10 @@ function App() {
 
   const fetchHotpepperAPI = async (x: string, y: string) => {
     const api_key = process.env.REACT_APP_HOTPEPPER_API_KEY
-    await axios.get(`http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=5&order=4&format=json`)
+    await axios.get(`http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=3&order=4&count=100&format=json`)
     .then((response: any) => {
       console.log('----response.data')
-      console.log(response.data.results.shop)
+      console.log(response.data.results.results_available)
       setResponseData(response.data.results.shop)
     })
   }
@@ -105,14 +105,38 @@ function App() {
       <br />
       <div>
         { 
-          responseData.map(data => {
-            return (<div>{data['name']}</div>)
+          responseData.map((data, key) => {
+            return (<div key={key}>{data['name']}</div>)
           })
         }
       </div>
       </>
     )
   }
+
+  const [isAvailable, setAvailable] = useState(false);
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+
+  const isFirstRef = useRef(true);
+
+  useEffect(() => {
+    isFirstRef.current = false;
+    if ('geolocation' in navigator) {
+      setAvailable(true);
+    }
+  }, [isAvailable]);
+
+  const getCurrentPosition = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords;
+      setPosition({ latitude, longitude });
+      console.log('-----')
+      console.log(typeof(latitude))
+      fetchHotpepperAPI(String(longitude), String(latitude))
+    });
+  };
+
+  if (isFirstRef.current) return <div className="App">Loading...</div>;
 
   return (
     <div className="App">
@@ -178,6 +202,19 @@ function App() {
             responseData.length ?
             shopInfo() : <p>'b'</p>
             }
+
+     <p>Geolocation API Sample</p>
+      {!isFirstRef && !isAvailable && <p className="App-error-text">geolocation IS NOT available</p>}
+      {isAvailable && (
+        <div>
+          <button onClick={getCurrentPosition}>Get Current Position</button>
+          <div>
+            latitude: {position.latitude}
+            <br />
+            longitude: {position.longitude}
+          </div>
+        </div>
+      )}
            </div>
          </div>
        </div>
