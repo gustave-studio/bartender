@@ -5,6 +5,7 @@ import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 import Prefectures from './prefectures.js';
 import axios from 'axios';
+import Button from '@mui/material/Button';
 
 function App() {
   const [message, setMessage] = useState('どういったお酒にしましょうか？')
@@ -98,6 +99,18 @@ function App() {
     })
   }
 
+  const [loadIndex, setLoadIndex] = useState(5);
+  const [isEmpty, setIsEmpty] = useState(false);
+  // const [currentPost, setCurrentPost] = useState([]);
+
+  const displayMore = () => {
+    if (loadIndex > responseData.length) {
+      setIsEmpty(true);
+    } else {
+      setLoadIndex(loadIndex + 5);
+    }
+  };
+
   const shopInfo = () => {
     return (
       <>
@@ -105,11 +118,18 @@ function App() {
       <br />
       <div>
         { 
-          responseData.map((data, key) => {
+          responseData.slice(0, loadIndex).map((data, key) => {
             return (<div key={key}>{data['name']}</div>)
           })
         }
       </div>
+      <Button
+              disabled={isEmpty ? true : false}
+              onClick={displayMore}
+              variant="contained"
+            >
+              さらに表示
+      </Button>
       </>
     )
   }
