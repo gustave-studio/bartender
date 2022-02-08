@@ -114,9 +114,6 @@ function App() {
     )
   }
 
-  const [isAvailable, setAvailable] = useState(false);
-  const [position, setPosition] = useState({ latitude: null, longitude: null });
-
   return (
     <div className="App">
       <div className="container">
@@ -164,8 +161,8 @@ function App() {
 
             <label>都道府県:</label>
             <select onChange={event => setPrefecture(event.target.value)}>
-              {Prefectures.OPTIONS.map(option => {
-                return (<option value={option}>{option}</option>)
+              {Prefectures.OPTIONS.map((option, key) => {
+                return (<option value={option} key={key} >{option}</option>)
               })}
             </select>
             <br />
