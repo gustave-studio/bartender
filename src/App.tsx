@@ -10,6 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
 
+declare global { interface Window { cback: any } }
+
 function App() {
   const [message, setMessage] = useState('どういったお酒にしましょうか？')
   const [displayMessage, setDisplayMessage] = useState('')
@@ -85,9 +87,13 @@ function App() {
   
   const [responseData, setResponseData] = useState([]);
 
+  const jsonpAdapter = require('axios-jsonp')
+
   const fetchHotpepperAPI = async (x: string, y: string) => {
     const api_key = process.env.REACT_APP_HOTPEPPER_API_KEY
-    await axios.get(`http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=3&order=4&count=100&format=json`)
+    await axios.get(`https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=3&order=4&count=100&format=jsonp`, {
+      adapter: jsonpAdapter
+    })
     .then((response: any) => {
       console.log('----response.data')
       console.log(response.data.results)
@@ -123,7 +129,7 @@ function App() {
         { 
           responseData.slice(0, loadIndex).map((data, key) => {
             return (
-              <Grid container className="grid_container">
+              <Grid container className="grid_container" key={key}>
                   <Grid item xs={2} >
                   <div className="shop_logo_image">
                     <img
