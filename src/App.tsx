@@ -6,6 +6,9 @@ import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 import Prefectures from './prefectures.js';
 import axios from 'axios';
 import Button from '@mui/material/Button';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@mui/material/CardContent';
 
 function App() {
   const [message, setMessage] = useState('どういったお酒にしましょうか？')
@@ -87,7 +90,7 @@ function App() {
     await axios.get(`http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=3&order=4&count=100&format=json`)
     .then((response: any) => {
       console.log('----response.data')
-      console.log(response.data.results.results_available)
+      console.log(response.data.results)
       setResponseData(response.data.results.shop)
     })
   }
@@ -114,12 +117,36 @@ function App() {
   const shopInfo = () => {
     return (
       <>
-      <div>その駅周辺だと、この辺のお店ですね</div>
+      <div>この辺のお店はもう行きました？</div>
       <br />
       <div>
         { 
           responseData.slice(0, loadIndex).map((data, key) => {
-            return (<div key={key}>{data['name']}</div>)
+            return (
+              <Grid container className="grid_container">
+                  <Grid item xs={2} >
+                  <div className="shop_logo_image">
+                    <img
+                      src={data['logo_image']}
+                      alt="shop_logo_image" />
+                  </div>
+                  </Grid>
+                    <Grid item xs={9} >
+                    <div className="">
+                     <Card>
+                     <CardContent>
+                     <div key={key}>
+                       <a href={data['urls']['pc']}>
+                         {data['name']}
+                       </a>
+                     </div>
+                      </CardContent>
+                     </Card>
+                     </div>
+                 </Grid>
+                 <Grid item xs={1} />
+              </Grid>       
+            )
           })
         }
       </div>

@@ -69,6 +69,25 @@ body {
   text-decoration: underline;
 }
 
+.grid_container {
+  /* vertical-align: middle; */
+  display: flex;
+	align-items: center;
+	justify-content: center;
+  margin: 5px;
+}
+
+.shop_logo_image {
+  width: 100%;
+  max-width: 100px;
+}
+
+.shop_logo_image img {
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Webフォント読み込み */
 @font-face {
 	font-family: 'PixelMplus12-Regular';
