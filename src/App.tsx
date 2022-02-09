@@ -191,7 +191,12 @@ function App() {
         <div className="header">
           <h1>VR Bar</h1>
 
-        sound<br />
+        BGM : Gunshot Straight
+        <br />
+        Artist : MusMus
+        <br />
+        Sound
+        <br />
         {playing
           ?<PauseCircleOutlineIcon
             onClick={() => setPlaying((state) => !state)}/>
