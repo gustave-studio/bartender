@@ -1,14 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './App.css';
-import ReactHowler from 'react-howler'
-import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline'
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 import Prefectures from './prefectures.js';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
+import Header from './components/Header'
 
 declare global { interface Window { cback: any } }
 
@@ -21,8 +19,6 @@ function App() {
   const [result, setResult] = useState(false)
   const [resultURL, setResultURL] = useState('')
   const [resultImage, setResultImage] = useState('')
-
-  const [playing, setPlaying] = useState(false)
 
   const selectMenu = (drink: string, key: number) => {
     if ('ウィスキー' === choices[key]) {
@@ -194,27 +190,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="header">
-          <h1>VR Bar</h1>
-
-        BGM : Gunshot Straight
-        <br />
-        Artist : MusMus
-        <br />
-        Sound
-        <br />
-        {playing
-          ?<PauseCircleOutlineIcon
-            onClick={() => setPlaying((state) => !state)}/>
-          :<PlayCircleOutlineIcon
-            onClick={() => setPlaying((state) => !state)}/>
-        }
-        </div>
-
-        <ReactHowler
-          src={`${process.env.REACT_APP_SOUND_FILE}`}
-          playing={playing}
-        />
+        <Header />
         {console.log(process.env.REACT_APP_SOUND_FILE)}
         <div className="main_screen">
         </div>
