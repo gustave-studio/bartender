@@ -3,7 +3,12 @@ import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 import ReactHowler from 'react-howler'
 
-const Header = function () {
+type HeaderPropsType = {
+  playing: boolean;
+  setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header = function (props: HeaderPropsType) {
   const [playing, setPlaying] = useState(false)
 
   return (
@@ -15,15 +20,15 @@ const Header = function () {
         <br />
         Sound
         <br />
-        {playing
+        { props.playing
           ?<PauseCircleOutlineIcon
-            onClick={() => setPlaying((state) => !state)}/>
+            onClick={() => props.setPlaying((state) => !state)}/>
           :<PlayCircleOutlineIcon
-            onClick={() => setPlaying((state) => !state)}/>
+            onClick={() => props.setPlaying((state) => !state)}/>
         }
         <ReactHowler
           src={`${process.env.REACT_APP_SOUND_FILE}`}
-          playing={playing}
+          playing={props.playing}
         />
         </div>
   );

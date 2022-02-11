@@ -19,6 +19,7 @@ function App() {
   const [result, setResult] = useState(false)
   const [resultURL, setResultURL] = useState('')
   const [resultImage, setResultImage] = useState('')
+  const [playing, setPlaying] = useState(false)
 
   const selectMenu = (drink: string, key: number) => {
     if ('ウィスキー' === choices[key]) {
@@ -61,7 +62,6 @@ function App() {
   function sleep(milliseconds: number) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
-
 
   const setInteger = async () => {
     let length = message.length
@@ -190,7 +190,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <Header />
+        <Header playing={playing} setPlaying={setPlaying}/>
         {console.log(process.env.REACT_APP_SOUND_FILE)}
         <div className="main_screen">
         </div>
