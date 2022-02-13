@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './App.css';
-import Prefectures from './prefectures.js';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
 import Header from './components/Header'
+import MessageWindow from './components/MessageWindow'
 
 declare global { interface Window { cback: any } }
 
@@ -194,63 +194,21 @@ function App() {
         {console.log(process.env.REACT_APP_SOUND_FILE)}
         <div className="main_screen">
         </div>
-        <div className="message_window">
-          <div className="message">
-            バーテンダー： 
-            <div className="result" style={{ display: result ? '' : 'none' }}>
-              <a href={resultURL}>
-                <img src={resultImage} alt="おすすめ結果" />
-                <br />
-                Amazonで購入
-              </a>
-            </div>
-            
-            { displayMessage.split('\n').map((item) => (
-                <div key={item}>
-                  {item}
-                </div>
-              )) }
-            {choices.map((choice, key) => (
-              <span key={key} style={{ display: displayChoices ? '' : 'none' }}>
-                <button key={key} onClick={() => selectMenu(choice, key)}>{choice}</button>
-                <br />
-              </span>
-            ))}
-
-            <label>都道府県:</label>
-            <select onChange={event => setPrefecture(event.target.value)}>
-              {Prefectures.OPTIONS.map((option, key) => {
-                return (<option value={option} key={key} >{option}</option>)
-              })}
-            </select>
-            <br />
-            <label>駅名:</label>
-            <input
-              type="text"
-              value={station}
-              onChange={event => setStation(event.target.value)}
-            />
-            <button onClick={() => searchRestaurant()}>検索</button>
-
-            {
-            responseData.length ?
-            shopInfo() : <p>'b'</p>
-            }
-
-     <p>Geolocation API Sample</p>
-      {!isFirstRef && !isAvailable && <p className="App-error-text">geolocation IS NOT available</p>}
-      {isAvailable && (
-        <div>
-          <button onClick={getCurrentPosition}>Get Current Position</button>
-          <div>
-            latitude: {position.latitude}
-            <br />
-            longitude: {position.longitude}
-          </div>
-        </div>
-      )}
-           </div>
-         </div>
+        <MessageWindow
+          result={result}
+          resultURL={resultURL}
+          resultImage={resultImage}
+          displayMessage={displayMessage}
+          choices={choices}
+          displayChoices={displayChoices}
+          selectMenu={selectMenu}
+          setPrefecture={setPrefecture}
+          station={station}
+          setStation={setStation}
+          searchRestaurant={searchRestaurant}
+          responseData={responseData}
+          shopInfo={shopInfo}
+        />
        </div>
     </div>
   );
