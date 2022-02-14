@@ -1,3 +1,4 @@
+import { ReactHTMLElement } from 'react';
 import Prefectures from '../prefectures.js';
 
 type MessageWindowPropsType = {
@@ -7,14 +8,17 @@ type MessageWindowPropsType = {
   displayMessage: string;
   choices: Array<string>;
   displayChoices: boolean;
-  selectMenu: any;
-//   ここから
+  selectMenu(drink: string, key: number): void;
   setPrefecture: React.Dispatch<React.SetStateAction<string>>;
   station: string;
   setStation: React.Dispatch<React.SetStateAction<string>>;
-  searchRestaurant: any;
-  responseData: Array<any>;
-  shopInfo: any;
+  searchRestaurant(): void;
+  responseData: Array<object>;
+  shopInfo(): object;
+  isFirstRef: object;
+  isAvailable: boolean;
+  getCurrentPosition(): void; 
+  position: { latitude: number, longitude: number };
 //   setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -58,23 +62,26 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       />
       <button onClick={() => props.searchRestaurant()}>検索</button>
 
+      { console.log('----isFirstRef') }
+      { console.log(typeof props.isFirstRef) }
+
       {
         props.responseData.length ?
         props.shopInfo() : <p>'b'</p>
       }
 
-        {/* <p>Geolocation API Sample</p>
-          {!isFirstRef && !isAvailable && <p className="App-error-text">geolocation IS NOT available</p>}
-          {isAvailable && (
+        <p>Geolocation API Sample</p>
+          {!props.isFirstRef && !props.isAvailable && <p className="App-error-text">geolocation IS NOT available</p>}
+          {props.isAvailable && (
             <div>
-              <button onClick={getCurrentPosition}>Get Current Position</button>
+              <button onClick={props.getCurrentPosition}>Get Current Position</button>
               <div>
-                latitude: {position.latitude}
+                latitude: {props.position.latitude}
                 <br />
-                longitude: {position.longitude}
+                longitude: {props.position.longitude}
               </div>
             </div>
-          )} */}
+          )}
      </div>
    </div>
   );

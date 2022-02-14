@@ -208,6 +208,10 @@ function App() {
           searchRestaurant={searchRestaurant}
           responseData={responseData}
           shopInfo={shopInfo}
+          isFirstRef={isFirstRef}
+          isAvailable={isAvailable}
+          getCurrentPosition={getCurrentPosition}
+          position={position}
         />
        </div>
     </div>
