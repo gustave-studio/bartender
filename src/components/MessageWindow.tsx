@@ -42,13 +42,14 @@ const MessageWindow = function (props: MessageWindowPropsType) {
             {item}
           </div>
         )) }
-        
-      {props.choices.map((choice, key) => (
-        <span key={key} style={{ display: props.displayChoices ? '' : 'none' }}>
-          <button key={key} onClick={() => props.selectMenu(choice, key)}>・{choice}</button>
-          <br />
-        </span>
-      ))}
+      <div className="choices">
+        {props.choices.map((choice, key) => (
+            <span key={key} style={{ display: props.displayChoices ? '' : 'none' }}>
+            <button key={key} onClick={() => props.selectMenu(choice, key)}>・{choice}</button>
+            <br />
+            </span>
+        ))}
+      </div>
 
       <div style={{ display: props.searchByLocation ? '' : 'none' }}>
        {/* <p>位置情報から探す</p> */}

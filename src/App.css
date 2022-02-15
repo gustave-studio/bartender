@@ -59,6 +59,10 @@ body {
   border: solid 3px #333333;
 }
 
+.choices {
+  margin-top: 10px;
+}
+
 .result {
   text-align: center;
   color: #FFFFFF;
