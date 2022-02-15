@@ -6,25 +6,25 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
 import Header from './components/Header'
+import Sound from './components/Sound'
 import MessageWindow from './components/MessageWindow'
+import Top from './components/Top'
 
 declare global { interface Window { cback: any } }
 
 function App() {
-  // const [message, setMessage] = useState('どういったお酒にしましょうか？')
-  const [message, setMessage] = useState('Bar Laristral(ラリストラル)へようこそ。\nここでは、お客さんが最高のお酒に出会えるよう、お手伝いをしています。')
+  const [message, setMessage] = useState('いらっしゃいませ。\nここでは、お客さんが最高のお酒に出会えるよう、お手伝いをしています。')
   const [displayMessage, setDisplayMessage] = useState('')
   const [displayChoices, setDisplayChoices] = useState(false)
   const [whisky, setWhisky] = useState(false)
   const [choices, setChoices] = useState(['自分に合ったお酒を探したい', '近くにいいお店がないか探したい'])
-  // const [choices, setChoices] = useState(['ウィスキー', 'ビール'])
   const [result, setResult] = useState(false)
   const [resultURL, setResultURL] = useState('')
   const [resultImage, setResultImage] = useState('')
   const [playing, setPlaying] = useState(false)
-
   const [searchByLocation, setSearchByLocation] = useState(false)
   const [searchByStation, setSearchByStation] = useState(false)
+  const [isStarted, setIsStarted] = useState(false)
 
   const selectMenu = (drink: string, key: number) => {
     if ('近くにいいお店がないか探したい' === choices[key]) {
@@ -80,7 +80,7 @@ function App() {
     }
   }
 
-  const [i, setI] = useState(1)
+  // const [i, setI] = useState(1)
 
   function sleep(milliseconds: number) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -91,7 +91,7 @@ function App() {
     for (let i = 0; i < (length + 1); i++) {
       setDisplayMessage(message.slice(0, i))
       console.log(i)
-      await sleep(20);
+      await sleep(10);
     }
     await sleep(100);
     if (!result) {
@@ -215,31 +215,37 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <Header playing={playing} setPlaying={setPlaying}/>
-        <div className="main_screen">
+      <Header />
+        <div style={{ display: isStarted ? 'none' : '' }}>
+          <Top setIsStarted={setIsStarted} setPlaying={setPlaying} setInteger={setInteger}/>
         </div>
-        <MessageWindow
-          result={result}
-          resultURL={resultURL}
-          resultImage={resultImage}
-          displayMessage={displayMessage}
-          choices={choices}
-          displayChoices={displayChoices}
-          selectMenu={selectMenu}
-          setPrefecture={setPrefecture}
-          station={station}
-          setStation={setStation}
-          searchRestaurant={searchRestaurant}
-          responseData={responseData}
-          shopInfo={shopInfo}
-          isFirstRef={isFirstRef}
-          isAvailable={isAvailable}
-          getCurrentPosition={getCurrentPosition}
-          position={position}
-          searchByLocation={searchByLocation}
-          searchByStation={searchByStation}
-        />
-       </div>
+        <div style={{ display: isStarted ? '' : 'none' }}>
+          <Sound playing={playing} setPlaying={setPlaying} />
+          <div className="main_screen">
+          </div>
+          <MessageWindow
+            result={result}
+            resultURL={resultURL}
+            resultImage={resultImage}
+            displayMessage={displayMessage}
+            choices={choices}
+            displayChoices={displayChoices}
+            selectMenu={selectMenu}
+            setPrefecture={setPrefecture}
+            station={station}
+            setStation={setStation}
+            searchRestaurant={searchRestaurant}
+            responseData={responseData}
+            shopInfo={shopInfo}
+            isFirstRef={isFirstRef}
+            isAvailable={isAvailable}
+            getCurrentPosition={getCurrentPosition}
+            position={position}
+            searchByLocation={searchByLocation}
+            searchByStation={searchByStation}
+          />
+          </div>
+        </div>
     </div>
   );
 }
