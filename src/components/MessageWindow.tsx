@@ -19,6 +19,8 @@ type MessageWindowPropsType = {
   isAvailable: boolean;
   getCurrentPosition(): void; 
   position: { latitude: number, longitude: number };
+  searchByLocation: boolean;
+  searchByStation: boolean;
 //   setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -40,41 +42,20 @@ const MessageWindow = function (props: MessageWindowPropsType) {
             {item}
           </div>
         )) }
+        
       {props.choices.map((choice, key) => (
         <span key={key} style={{ display: props.displayChoices ? '' : 'none' }}>
-          <button key={key} onClick={() => props.selectMenu(choice, key)}>{choice}</button>
+          <button key={key} onClick={() => props.selectMenu(choice, key)}>・{choice}</button>
           <br />
         </span>
       ))}
 
-      <label>都道府県:</label>
-      <select onChange={event => props.setPrefecture(event.target.value)}>
-        {Prefectures.OPTIONS.map((option, key) => {
-          return (<option value={option} key={key} >{option}</option>)
-        })}
-      </select>
-      <br />
-      <label>駅名:</label>
-      <input
-        type="text"
-        value={props.station}
-        onChange={event => props.setStation(event.target.value)}
-      />
-      <button onClick={() => props.searchRestaurant()}>検索</button>
-
-      { console.log('----isFirstRef') }
-      { console.log(typeof props.isFirstRef) }
-
-      {
-        props.responseData.length ?
-        props.shopInfo() : <p>'b'</p>
-      }
-
-        <p>Geolocation API Sample</p>
+      <div style={{ display: props.searchByLocation ? '' : 'none' }}>
+       {/* <p>位置情報から探す</p> */}
           {!props.isFirstRef && !props.isAvailable && <p className="App-error-text">geolocation IS NOT available</p>}
           {props.isAvailable && (
             <div>
-              <button onClick={props.getCurrentPosition}>Get Current Position</button>
+              <button onClick={props.getCurrentPosition}>位置情報から探す</button>
               <div>
                 latitude: {props.position.latitude}
                 <br />
@@ -82,6 +63,32 @@ const MessageWindow = function (props: MessageWindowPropsType) {
               </div>
             </div>
           )}
+      </div>
+
+      <div style={{ display: props.searchByStation ? '' : 'none' }}>
+        <label>都道府県:</label>
+        <select onChange={event => props.setPrefecture(event.target.value)}>
+            {Prefectures.OPTIONS.map((option, key) => {
+            return (<option value={option} key={key} >{option}</option>)
+            })}
+        </select>
+        <br />
+        <label>駅名:</label>
+        <input
+            type="text"
+            value={props.station}
+            onChange={event => props.setStation(event.target.value)}
+        />
+        <button onClick={() => props.searchRestaurant()}>検索</button>
+      </div>
+
+      { console.log('----isFirstRef') }
+      { console.log(typeof props.isFirstRef) }
+
+      {
+        props.responseData.length ?
+        props.shopInfo() : <div></div>
+      }
      </div>
    </div>
   );

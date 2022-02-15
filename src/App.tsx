@@ -11,29 +11,52 @@ import MessageWindow from './components/MessageWindow'
 declare global { interface Window { cback: any } }
 
 function App() {
-  const [message, setMessage] = useState('どういったお酒にしましょうか？')
+  // const [message, setMessage] = useState('どういったお酒にしましょうか？')
+  const [message, setMessage] = useState('Bar Laristral(ラリストラル)へようこそ。\nここでは、お客さんが最高のお酒に出会えるよう、お手伝いをしています。')
   const [displayMessage, setDisplayMessage] = useState('')
   const [displayChoices, setDisplayChoices] = useState(false)
   const [whisky, setWhisky] = useState(false)
-  const [choices, setChoices] = useState(['ウィスキー', 'ビール'])
+  const [choices, setChoices] = useState(['自分に合ったお酒を探したい', '近くにいいお店がないか探したい'])
+  // const [choices, setChoices] = useState(['ウィスキー', 'ビール'])
   const [result, setResult] = useState(false)
   const [resultURL, setResultURL] = useState('')
   const [resultImage, setResultImage] = useState('')
   const [playing, setPlaying] = useState(false)
 
+  const [searchByLocation, setSearchByLocation] = useState(false)
+  const [searchByStation, setSearchByStation] = useState(false)
+
   const selectMenu = (drink: string, key: number) => {
-    if ('ウィスキー' === choices[key]) {
-      console.log('whisky')
-      setWhisky(true)
-      setMessage('どんなウィスキーにしますか？')
-      setChoices(['私の好みに合わせておすすめ教えて', 'マスターのおすすめを教えて'])
+    if ('近くにいいお店がないか探したい' === choices[key]) {
+      setMessage('飲食店には、かなり詳しいですよ!\n現在位置からお店を探しましょうか？\nそれとも、最寄りの駅から探しますか?')
+      setChoices(['現在位置から探す', '最寄りの駅から探す'])
+      setDisplayChoices(false)
+    }
+
+    if ('現在位置から探す' === choices[key]) {
+      setMessage('お使いのブラウザの位置情報取得を許可しておいて下さいね。\n')
+      setChoices([])
+      setSearchByLocation(true)
+      setDisplayChoices(false)
+    }
+
+    if ('最寄りの駅から探す' === choices[key]) {
+      setMessage('都道府県と駅名を教えて頂けませんか？')
+      setChoices([])
+      setSearchByStation(true)
+      setDisplayChoices(false)
+    }
+
+    if ('自分に合ったお酒を探したい' === choices[key]) {
+      setMessage('探したいお酒の種類を教えて下さい。')
+      setChoices(['ウィスキー', 'ビール', 'ワイン', 'カクテル', 'マスターのおすすめは？', 'お酒はよくわからないのですが・・・'])
       setDisplayChoices(false)
     }
 
     // ウィスキー
-    if ('私の好みに合わせておすすめ教えて' === choices[key]) {
+    if ('ウィスキー' === choices[key]) {
       setWhisky(true)
-      setMessage('では、いくつか質問させて下さい。\nお客さんは、クセが少なく飲みやすいウィスキーがお好みでしょうか？')
+      setMessage('いくつか質問させて頂きますね。\nお客さんは、クセが少なく飲みやすいウィスキーがお好みでしょうか？')
       setChoices(['クセのない方が好き', 'クセがあっても大丈夫'])
       setDisplayChoices(false)
     }
@@ -41,7 +64,7 @@ function App() {
     // ウィスキー > 私の好みに合わせておすすめ教えて
     if ('クセのない方が好き' === choices[key]) {
       setWhisky(true)
-      setMessage('どんな味わいのウィスキーが飲みたいでしょうか？')
+      setMessage('どんな味わいのウィスキーが飲みたいですか？')
       setChoices(['シンプルでスッキリしたウィスキー', 'マイルドで飲みやすいウィスキー', '華やかな香りのウィスキー'])
       setDisplayChoices(false)
     }
@@ -71,7 +94,9 @@ function App() {
       await sleep(20);
     }
     await sleep(100);
-    setDisplayChoices(true)
+    if (!result) {
+      setDisplayChoices(true)
+    }
   }
 
   useEffect(() => {
@@ -191,7 +216,6 @@ function App() {
     <div className="App">
       <div className="container">
         <Header playing={playing} setPlaying={setPlaying}/>
-        {console.log(process.env.REACT_APP_SOUND_FILE)}
         <div className="main_screen">
         </div>
         <MessageWindow
@@ -212,6 +236,8 @@ function App() {
           isAvailable={isAvailable}
           getCurrentPosition={getCurrentPosition}
           position={position}
+          searchByLocation={searchByLocation}
+          searchByStation={searchByStation}
         />
        </div>
     </div>
