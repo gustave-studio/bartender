@@ -61,21 +61,69 @@ function App() {
       setDisplayChoices(false)
     }
 
-    // ウィスキー > 私の好みに合わせておすすめ教えて
+    // ウィスキー > 私の好みに合わせておすすめ教えて > クセのない方が好き
     if ('クセのない方が好き' === choices[key]) {
       setWhisky(true)
       setMessage('どんな味わいのウィスキーが飲みたいですか？')
-      setChoices(['シンプルでスッキリしたウィスキー', 'マイルドで飲みやすいウィスキー', '華やかな香りのウィスキー'])
+      setChoices(['シンプルでスッキリしたウィスキー', 'マイルドで飲みやすいウィスキー', '爽やかなウィスキー'])
       setDisplayChoices(false)
     }
 
-    // ウィスキー > 私の好みに合わせておすすめ教えて > シンプルでスッキリしたウィスキー
+    // ウィスキー > 私の好みに合わせておすすめ教えて > クセのない方が好き > シンプルでスッキリしたウィスキー
     if ('シンプルでスッキリしたウィスキー' === choices[key]) {
       setWhisky(true)
       setMessage('サントリーの角瓶がおすすめです。\n香りやコクのバランスがとれており、ドライな口当たりが特徴です。\n飲み方は、ソーダ割りが個人的におすすめですね。\nドライでサッパリしているのでお食事にも合わせやすいです。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B01CXSRJHI')
       setResultImage('https://images-na.ssl-images-amazon.com/images/P/B01CXSRJHI.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー > 私の好みに合わせておすすめ教えて > クセのない方が好き > マイルドで飲みやすいウィスキー
+    if ('マイルドで飲みやすいウィスキー' === choices[key]) {
+      setWhisky(true)
+      setMessage('メーカーズマークがおすすめです。\n味は、バニラやはちみつの甘みが感じられ、スムースな飲み口が特徴です。\nメーカーズマークは、バーボンウィスキーの定番なので、数多くのバーや酒屋で取り扱っていて、手に入りやすいのも良い所ですね。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B01MZ2B5GO')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B01MZ2B5GO.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー > 私の好みに合わせておすすめ教えて > クセのない方が好き > 爽やかなウィスキー
+    if ('爽やかなウィスキー' === choices[key]) {
+      setWhisky(true)
+      setMessage('知多がおすすめです。\nハイボールにすると優しい香りが引き立ち、爽やかな印象のウィスキーになります。\n食事との相性も良いので、夕食のお供にどうぞ。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B01610C1UY')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B01610C1UY.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー > 私の好みに合わせておすすめ教えて > クセがあっても大丈夫
+    if ('クセがあっても大丈夫' === choices[key]) {
+      setWhisky(true)
+      setMessage('どんな味わいがお好きでしょうか？')
+      setChoices(['コクと甘みを感じるウィスキー', 'スモーキーでほのかに甘いウィスキー', '最強にスモーキーなウィスキー'])
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー > 私の好みに合わせておすすめ教えて > クセがあっても大丈夫 > コクと甘みを感じるウィスキー
+    if ('コクと甘みを感じるウィスキー' === choices[key]) {
+      setWhisky(true)
+      setMessage('ワイルドターキー 8年がおすすめです。\nバーボン特有の甘みがあり、濃厚なコクが感じられるウィスキーです。\n値段もお手頃でコスパが良いので、普段飲みのバーボンとしておすすめです。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B001TP8L3S')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B001TP8L3S.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー > 私の好みに合わせておすすめ教えて > クセがあっても大丈夫 > 爽やかなウィスキー
+    if ('スモーキーでほのかに甘いウィスキー' === choices[key]) {
+      setWhisky(true)
+      setMessage('ボウモア 12年がおすすめです。\nスモーキーで少し甘みを感じる味が特徴です。\n少しクセはありますが、ハマると飲み続けてしまう中毒性がありますね。\n私も一時期ハマってよく飲んでいました。\nスコッチに興味があれば、一度は飲んで頂きたいウィスキーです。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B001TP8L3S')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B001TP8L3S.09.MZZZZZZZ')
       setDisplayChoices(false)
     }
   }
