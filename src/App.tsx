@@ -53,6 +53,22 @@ function App() {
       setDisplayChoices(false)
     }
 
+    // ビール
+    if ('ビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('一般的なビールと個性派なビールどちらが良いですか？\n')
+      setChoices(['一般的なビール', '個性派なビール'])
+      setDisplayChoices(false)
+    }
+
+    // ビール > 一般的なビール
+    if ('一般的なビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('どんな味わいのウィスキーが飲みたいですか？')
+      setChoices(['シンプルでスッキリしたウィスキー', 'マイルドで飲みやすいウィスキー', '爽やかなウィスキー'])
+      setDisplayChoices(false)
+    }
+
     // ウィスキー
     if ('ウィスキー' === choices[key]) {
       setWhisky(true)
@@ -124,6 +140,16 @@ function App() {
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B001TP8L3S')
       setResultImage('https://images-na.ssl-images-amazon.com/images/P/B001TP8L3S.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ウィスキー > 私の好みに合わせておすすめ教えて > クセがあっても大丈夫 > 最強にスモーキーなウィスキー
+    if ('最強にスモーキーなウィスキー' === choices[key]) {
+      setWhisky(true)
+      setMessage('アードベック飲むしかないですね！アードベック 10年はいかがでしょうか？\nこれは、他のスコッチで物足りなくなった人が最終的に行き着くお酒ですね。\n私も飲むんですが、休日前にアードベックをガツんと飲んで、夜更かししてまどろんでいる時間が最高ですよ。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B008U7SUDE')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B008U7SUDE.09.MZZZZZZZ')
       setDisplayChoices(false)
     }
   }
