@@ -52,7 +52,7 @@ function App() {
     if ('ビール' === choices[key]) {
       setWhisky(true)
       setMessage('一般的なビールと個性派なビールどちらが良いですか？\n')
-      setChoices(['一般的なビール', '個性派なビール'])
+      setChoices(['一般的なビール', '個性的なビール'])
       setDisplayChoices(false)
     }
 
@@ -75,20 +75,78 @@ function App() {
     // ビール > 一般的なビール > どんな料理にも合うビール
     if ('どんな料理にも合うビール' === choices[key]) {
       setWhisky(true)
-      setMessage('サッポロ黒ラベルがおすすめです。\n味や香りにバランス感があり、どんな料理にも合うビールです。\nあまり人を選ばない汎用性のあるビールだと思います。')
+      setMessage('キリン 一番搾りがおすすめです。\n味や香りにバランス感があり、どんな料理にも合うビールです。\n雑味も少なく、人を選ばない汎用性のあるビールだと思います。')
       setResult(true)
-      setResultURL('https://www.amazon.co.jp/dp/B001TRIKRS')
-      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B001TRIKRS.09.MZZZZZZZ')
+      setResultURL('https://www.amazon.co.jp/dp/B01BM9ECRE')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B01BM9ECRE.09.MZZZZZZZ')
       setDisplayChoices(false)
     }
 
     // ビール > 一般的なビール > 香りや風味を味わうビール
     if ('香りや風味を味わうビール' === choices[key]) {
       setWhisky(true)
-      setMessage('ヱビスビールがおすすめです。\nホップの香りや濃厚な味わいが楽しめます。')
+      setMessage('サッポロ黒ラベルがおすすめです。\nホップの香りや風味が良く、苦さの中に旨味も感じられます。\n味のバランスが良く、料理の邪魔をしないので、私も食事と一緒によく飲んでいますよ。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B001TRIKRS')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B001TRIKRS.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ビール > 一般的なビール > 旨味とコクのあるビール
+    if ('旨味とコクのあるビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('ヱビスビールがおすすめです。\nホップの香りや濃厚な味わいが楽しめます。ビールのコクと旨味を味わいたければヱビスビールですね。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B01C84VRXE')
       setResultImage('https://images-na.ssl-images-amazon.com/images/P/B01C84VRXE.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+     // ビール > 一般的なビール > キレと爽快感のあるビール
+     if ('旨味とコクのあるビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('アサヒ スーパードライがおすすめです。\n辛口で、味のキレと爽快感があるので、仕事終わりやお風呂に入った後にグイッといきたい時はこれで決まりです。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B0029ZFYJQ')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B0029ZFYJQ.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ビール > 個性的なビール
+    if ('個性的なビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('どんなビールが好きですか？')
+      setChoices(['柑橘系のフレッシュなビール', 'シトラスの香りを楽しむビール', '苦味とコクを味わうビール'])
+      setDisplayChoices(false)
+    }
+
+    // ビール > 個性的なビール > 柑橘系のフレッシュなビール
+    if ('柑橘系のフレッシュなビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('よなよなエールがおすすめです。\n柑橘系のフレッシュな香りとフルーティーな味わいが飲みやすく、ビール初心者の方にもおすすめ出来ます。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B0069FI26O')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B0029ZFYJQ.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ビール > 個性的なビール > シトラスの香りを楽しむビール
+    if ('シトラスの香りを楽しむビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('COEDOビール毱花をおすすめします。\nビールの苦味の中にシトラスの香りが感じられるビールです。\n普通のビールに飽きたら毱花を味わってみて下さい。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B0775S7YQ3')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B0775S7YQ3.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ビール > 個性的なビール > 苦味とコクを味わうビール
+    if ('苦味とコクを味わうビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('インドの青鬼がおすすめです。\nしっかりとビールの苦味が感じられるため、ビール好きのためのビールですね。\nビールの美味しさを存分に味わいたい人におすすめです。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B0069FI6B0')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B0069FI6B0.09.MZZZZZZZ')
       setDisplayChoices(false)
     }
 
