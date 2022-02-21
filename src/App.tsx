@@ -1,10 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './App.css';
-import axios from 'axios';
-import Button from '@mui/material/Button';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@mui/material/CardContent';
 import Header from './components/Header'
 import Sound from './components/Sound'
 import MessageWindow from './components/MessageWindow'
@@ -205,93 +200,11 @@ function App() {
     setInteger()
   }, [message]);
 
-  const [prefecture, setPrefecture] = useState("北海道");
-  const [station, setStation] = useState("札幌");
-  
-  const [responseData, setResponseData] = useState([]);
 
-  const jsonpAdapter = require('axios-jsonp')
-
-  const fetchHotpepperAPI = async (x: string, y: string) => {
-    const api_key = process.env.REACT_APP_HOTPEPPER_API_KEY
-    await axios.get(`https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=3&order=4&count=100&format=jsonp`, {
-      adapter: jsonpAdapter
-    })
-    .then((response: any) => {
-      console.log('----response.data')
-      console.log(response.data.results)
-      setResponseData(response.data.results.shop)
-    })
-  }
-
-  const searchRestaurant = async () => {
-    await axios.get(`https://express.heartrails.com/api/json?method=getStations&name=${station}&prefecture=${prefecture}`)
-      .then((response: any) => {
-      fetchHotpepperAPI(response.data.response.station[0].x, response.data.response.station[0].y)
-    })
-  }
-
-  const [loadIndex, setLoadIndex] = useState(5);
-  const [isEmpty, setIsEmpty] = useState(false);
   // const [currentPost, setCurrentPost] = useState([]);
 
-  const displayMore = () => {
-    if (loadIndex > responseData.length) {
-      setIsEmpty(true);
-    } else {
-      setLoadIndex(loadIndex + 5);
-    }
-  };
-
-  const shopInfo = () => {
-    return (
-      <>
-      <div>この辺のお店はもう行きました？</div>
-      <br />
-      <div>
-        { 
-          responseData.slice(0, loadIndex).map((data, key) => {
-            return (
-              <Grid container className="grid_container" key={key}>
-                  <Grid item xs={2} >
-                  <div className="shop_logo_image">
-                    <img
-                      src={data['logo_image']}
-                      alt="shop_logo_image" />
-                  </div>
-                  </Grid>
-                    <Grid item xs={9} >
-                    <div className="">
-                     <Card>
-                     <CardContent>
-                     <div key={key}>
-                       <a href={data['urls']['pc']}>
-                         {data['name']}
-                       </a>
-                     </div>
-                      </CardContent>
-                     </Card>
-                     </div>
-                 </Grid>
-                 <Grid item xs={1} />
-              </Grid>       
-            )
-          })
-        }
-      </div>
-      <Button
-              disabled={isEmpty ? true : false}
-              onClick={displayMore}
-              variant="contained"
-            >
-              さらに表示
-      </Button>
-      </>
-    )
-  }
-
   const [isAvailable, setAvailable] = useState(false);
-  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+
 
   const isFirstRef = useRef(true);
 
@@ -301,16 +214,6 @@ function App() {
       setAvailable(true);
     }
   }, [isAvailable]);
-
-  const getCurrentPosition = () => {
-    navigator.geolocation.getCurrentPosition(position => {
-      const { latitude, longitude } = position.coords;
-      setPosition({ latitude, longitude });
-      console.log('-----')
-      console.log(typeof(latitude))
-      fetchHotpepperAPI(String(longitude), String(latitude))
-    });
-  };
 
   if (isFirstRef.current) return <div className="App">Loading...</div>;
 
@@ -333,16 +236,8 @@ function App() {
             choices={choices}
             displayChoices={displayChoices}
             selectMenu={selectMenu}
-            setPrefecture={setPrefecture}
-            station={station}
-            setStation={setStation}
-            searchRestaurant={searchRestaurant}
-            responseData={responseData}
-            shopInfo={shopInfo}
             isFirstRef={isFirstRef}
             isAvailable={isAvailable}
-            getCurrentPosition={getCurrentPosition}
-            position={position}
             searchByLocation={searchByLocation}
             searchByStation={searchByStation}
           />
