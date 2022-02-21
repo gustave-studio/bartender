@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { ReactHTMLElement } from 'react';
 import Prefectures from '../prefectures.js';
 import axios from 'axios';
@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
-
+import ReactLoading from 'react-loading';
 
 type MessageWindowPropsType = {
   result: boolean;
@@ -20,6 +20,7 @@ type MessageWindowPropsType = {
   isAvailable: boolean;
   searchByLocation: boolean;
   searchByStation: boolean;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const MessageWindow = function (props: MessageWindowPropsType) {
@@ -30,6 +31,28 @@ const MessageWindow = function (props: MessageWindowPropsType) {
     const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
     const [prefecture, setPrefecture] = useState("北海道");
     const [station, setStation] = useState("札幌");
+    const [isSearching, setIsSearching] = useState(false);
+    const [now, setNow] = useState(Date.now());
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //       //some action
+    //       console.log(
+    //         '10 seconds has passed. TimerID ' +
+    //           String(timer) +
+    //           ' has finished.'
+    //       );
+    //     }, 10 * 1000);
+    //     console.log('TimerID ' + String(timer) + ' has started.');
+    
+    //     //クリーンアップ
+    //     return () => {
+    //       console.log(
+    //         'Restart button has clicked. TimerID ' + String(timer) + ' has canceled.'
+    //       );
+    //       clearTimeout(timer);
+    //     };
+    //   }, [now]);
 
     const displayMore = () => {
         if (loadIndex > responseData.length) {
@@ -45,26 +68,41 @@ const MessageWindow = function (props: MessageWindowPropsType) {
           adapter: jsonpAdapter
         })
         .then((response: any) => {
-          console.log('----response.data')
-          console.log(response.data.results)
+            console.log('ホットペッパー取得');
           setResponseData(response.data.results.shop)
+          setIsSearching(false)
         })
       }
     
     const searchRestaurant = async () => {
       await axios.get(`https://express.heartrails.com/api/json?method=getStations&name=${station}&prefecture=${prefecture}`)
         .then((response: any) => {
-        fetchHotpepperAPI(response.data.response.station[0].x, response.data.response.station[0].y)
+          fetchHotpepperAPI(response.data.response.station[0].x, response.data.response.station[0].y)
       })
     }
     
     const getCurrentPosition = () => {
+        setIsSearching(true)
+        const timer = setTimeout(() => {
+            //some action
+            console.log(
+              '10 seconds has passed. TimerID ' +
+                String(timer) +
+                ' has finished.'
+            );
+            setIsSearching(false)
+            props.setMessage('位置情報の設定を確認して、もう一度お試し下さい。')
+        }, 8 * 1000);
+
+        console.log('TimerID ' + String(timer) + ' has started.');
+
         navigator.geolocation.getCurrentPosition(position => {
           const { latitude, longitude } = position.coords;
           setPosition({ latitude, longitude });
-          console.log('-----')
+          console.log('-----!!')
           console.log(typeof(latitude))
           fetchHotpepperAPI(String(longitude), String(latitude))
+          clearTimeout(timer)
         });
       };
 
@@ -147,6 +185,7 @@ const MessageWindow = function (props: MessageWindowPropsType) {
           {props.isAvailable && (
             <div>
               <button onClick={() => getCurrentPosition()}>位置情報から探す</button>
+              { isSearching ? <ReactLoading type="spin" /> : <span /> }
               <div>
                 latitude: {position.latitude}
                 <br />

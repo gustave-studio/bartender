@@ -240,6 +240,7 @@ function App() {
             isAvailable={isAvailable}
             searchByLocation={searchByLocation}
             searchByStation={searchByStation}
+            setMessage={setMessage}
           />
           </div>
         </div>
