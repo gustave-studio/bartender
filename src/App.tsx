@@ -64,8 +64,36 @@ function App() {
     // ビール > 一般的なビール
     if ('一般的なビール' === choices[key]) {
       setWhisky(true)
-      setMessage('どんな味わいのウィスキーが飲みたいですか？')
-      setChoices(['シンプルでスッキリしたウィスキー', 'マイルドで飲みやすいウィスキー', '爽やかなウィスキー'])
+      setMessage('どんなビールが好きですか？')
+      setChoices(['旨味とコクが欲しい', 'キレと爽快感が欲しい', 'バランス感のあるビール',])
+      setDisplayChoices(false)
+    }
+
+    // ビール > 一般的なビール
+    if ('一般的なビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('どんなビールが好きですか？')
+      setChoices(['どんな料理にも合うビール', '香りや風味を味わうビール', '旨味とコクのあるビール', 'キレと爽快感のあるビール'])
+      setDisplayChoices(false)
+    }
+
+    // ビール > 一般的なビール > どんな料理にも合うビール
+    if ('どんな料理にも合うビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('サッポロ黒ラベルがおすすめです。\n味や香りにバランス感があり、どんな料理にも合うビールです。\nあまり人を選ばない汎用性のあるビールだと思います。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B001TRIKRS')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B001TRIKRS.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ビール > 一般的なビール > 香りや風味を味わうビール
+    if ('香りや風味を味わうビール' === choices[key]) {
+      setWhisky(true)
+      setMessage('ヱビスビールがおすすめです。\nホップの香りや濃厚な味わいが楽しめます。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B01C84VRXE')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B01C84VRXE.09.MZZZZZZZ')
       setDisplayChoices(false)
     }
 
