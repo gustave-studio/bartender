@@ -48,6 +48,90 @@ function App() {
       setDisplayChoices(false)
     }
 
+    // ワイン
+    if ('ワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('赤ワインと白ワインどちらが良いでしょうか？\n赤ワインは肉料理、白ワインは魚介類やパスタと合わせて飲むのがおすすめです。')
+      setChoices(['赤ワインが飲みたいな', '白ワインが飲みたいな'])
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 赤ワイン
+    if ('赤ワインが飲みたいな' === choices[key]) {
+      setWhisky(true)
+      setMessage('どんなワインがお好みですか？')
+      setChoices(['濃厚で飲み応えのあるワイン', 'フルーティーでアーティスティックなワイン', '軽やかでさっぱりしたワイン'])
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 赤ワイン > 濃厚で飲み応えのあるワイン
+    if ('濃厚で飲み応えのあるワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('モンテプルチャーノ ダブルッツォがおすすめです。\nこちらは、1本の樹に2房しか実がならない葡萄を使った贅沢なワインです。\nしかもその2房には栄養が集中するので、濃厚な果実感出るんですよ。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B001M3JY5G')
+      setResultImage('https://images-fe.ssl-images-amazon.com/images/I/717kzY2li6L._AC_UL232_SR232,232_.jpg')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 赤ワイン > フルーティーでアーティスティックなワイン
+    if ('フルーティーでアーティスティックなワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('オノロ ベラがおすすめです。\nこちらのワインは、カシスのようなフルーティーな香りと味わいが楽しめます。\n値段は安く庶民派なワインなのですが、アカデミー賞のパーティーで飲まれたことがあるんです。\nアートを感じさせるラベルも特徴的ですね。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B00IRR9U22')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B00IRR9U22.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 赤ワイン > 軽やかでさっぱりしたワイン
+    if ('軽やかでさっぱりしたワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('フランジアがおすすめです。\nライトで軽やかな口当たりで、食事を邪魔しない普段使いのワインとしておすすめです。\n口に含んだ時に広がる、ラズベリーやチェリーのような香りがいいですね。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B002JN4NS6')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B002JN4NS6.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 白ワイン
+    if ('白ワインが飲みたいな' === choices[key]) {
+      setWhisky(true)
+      setMessage('どんなワインがお好みですか？')
+      setChoices(['辛口でさっぱりしたワイン', 'マスカットの甘さを感じるワイン', 'デザートのようなワイン'])
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 白ワイン > 辛口でさっぱりした飲み口のワイン
+    if ('辛口でさっぱりしたワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('パスクァ ビアンコ・デル・ヴェネトがおすすめです。\n辛口でスッキリした飲み口の中にフルーティーな甘さを感じます。\nお食事に良く合いますし、お値段もお手頃なので普段使いの白ワインとしていかがでしょうか。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B00335QXD2')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B00335QXD2.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 白ワイン > マスカットの甘さを感じるワイン
+    if ('マスカットの甘さを感じるワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('イエローテイル モスカートがおすすめです。\nこちらはマスカットのフルーティーでフレッシュな味わいが楽しめます。\n甘口で飲みやすいので、初心者にもおすすめです。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B003DU4SDO')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B003DU4SDO.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 白ワイン > デザートのようなワイン
+    if ('デザートのようなワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('サンテロ　天使のアスティがおすすめです。\nこちらは甘口のスパークリングワインになります。\nすごく甘いくジュースのようなので、お食事というよりは、食後にデザートと一緒に飲まれると良いと思いますよ。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B0036RAU68')
+      setResultImage('https://images-fe.ssl-images-amazon.com/images/I/71n8Dxp8oCL._AC_UL232_SR232,232_.jpg')
+      setDisplayChoices(false)
+    }
+
     // ビール
     if ('ビール' === choices[key]) {
       setWhisky(true)
@@ -126,7 +210,7 @@ function App() {
       setMessage('よなよなエールがおすすめです。\n柑橘系のフレッシュな香りとフルーティーな味わいが飲みやすく、ビール初心者の方にもおすすめ出来ます。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B0069FI26O')
-      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B0029ZFYJQ.09.MZZZZZZZ')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B0069FI26O.09.MZZZZZZZ')
       setDisplayChoices(false)
     }
 
