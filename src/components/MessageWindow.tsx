@@ -8,6 +8,17 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
 import ReactLoading from 'react-loading';
 
+type Recipe = {
+    name: string
+    amount: string
+  }
+
+type Ingredient = {
+    name: string
+    url: string
+    image: string
+  }
+
 type MessageWindowPropsType = {
   result: boolean;
   resultURL: string;
@@ -21,6 +32,10 @@ type MessageWindowPropsType = {
   searchByLocation: boolean;
   searchByStation: boolean;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
+  resultOfCocktail: boolean;
+  cocktailsRecipes: Array<Recipe>;
+  cocktailIngredients: Array<Ingredient>;
+
 }
 
 const MessageWindow = function (props: MessageWindowPropsType) {
@@ -33,26 +48,6 @@ const MessageWindow = function (props: MessageWindowPropsType) {
     const [station, setStation] = useState("札幌");
     const [isSearching, setIsSearching] = useState(false);
     const [now, setNow] = useState(Date.now());
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //       //some action
-    //       console.log(
-    //         '10 seconds has passed. TimerID ' +
-    //           String(timer) +
-    //           ' has finished.'
-    //       );
-    //     }, 10 * 1000);
-    //     console.log('TimerID ' + String(timer) + ' has started.');
-    
-    //     //クリーンアップ
-    //     return () => {
-    //       console.log(
-    //         'Restart button has clicked. TimerID ' + String(timer) + ' has canceled.'
-    //       );
-    //       clearTimeout(timer);
-    //     };
-    //   }, [now]);
 
     const displayMore = () => {
         if (loadIndex > responseData.length) {
@@ -157,6 +152,7 @@ const MessageWindow = function (props: MessageWindowPropsType) {
     <div className="message_window">
     <div className="message">
       バーテンダー： 
+      {/* 通常の結果画像 */}
       <div className="result" style={{ display: props.result ? '' : 'none' }}>
         <a href={props.resultURL}>
           <img src={props.resultImage} alt="おすすめ結果" />
@@ -164,19 +160,48 @@ const MessageWindow = function (props: MessageWindowPropsType) {
           Amazonで購入
         </a>
       </div>
+      {/* カクテルの結果画像 */}
+      <div className="result" style={{ display: props.resultOfCocktail ? '' : 'none' }}>
+          <img src={props.resultImage} alt="おすすめ結果" />
+      </div>
       
       { props.displayMessage.split('\n').map((item) => (
           <div key={item}>
             {item}
           </div>
         )) }
-      <div className="choices">
+      <div className="choices" style={{ display: props.displayChoices ? '' : 'none' }}>
         {props.choices.map((choice, key) => (
-            <span key={key} style={{ display: props.displayChoices ? '' : 'none' }}>
+            <span key={key}>
             <button key={key} onClick={() => props.selectMenu(choice, key)}>・{choice}</button>
             <br />
             </span>
         ))}
+      </div>
+
+      <div className="result" style={{ display: props.resultOfCocktail ? '' : 'none' }}>
+        <hr />
+        <h3>レシピ</h3>  
+        {props.cocktailsRecipes.map((recipe, key) => (
+            <span key={key}>
+              { recipe['name'] }: {recipe['amount']}
+              <br />
+            </span>
+          ))}
+        <hr />
+        <h3>材料を買う</h3> 
+        {props.cocktailIngredients.map((ingredient, key) => (
+            <span key={ key }>
+              <a href={ ingredient['url'] }>
+               <img src={ ingredient['image'] } alt="おすすめ結果" />
+              <br />
+              { ingredient['name'] }
+              <br />
+                Amazonで購入
+              </a>
+              <br />
+            </span>
+          ))}
       </div>
 
       <div style={{ display: props.searchByLocation ? '' : 'none' }}>

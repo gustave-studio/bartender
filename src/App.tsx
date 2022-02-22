@@ -20,8 +20,124 @@ function App() {
   const [searchByLocation, setSearchByLocation] = useState(false)
   const [searchByStation, setSearchByStation] = useState(false)
   const [isStarted, setIsStarted] = useState(false)
+  type Recipe = {
+    name: string
+    amount: string
+  }
+
+  type Ingredient = {
+    name: string
+    url: string
+    image: string
+  }
+
+  const [resultOfCocktail, setResultOfCocktail] = useState(false)
+  const [cocktailIngredients, setCocktailIngredients] = useState<Ingredient[]>([])
+  const [cocktailsRecipes, setCocktailsRecipes] = useState<Recipe[]>([])
 
   const selectMenu = (drink: string, key: number) => {
+    // カクテル
+    if ('カクテル' === choices[key]) {
+      setMessage('家でも楽しめるカクテルか、お店で飲むような本格的なカクテルどちらがよろしいですか？')
+      setChoices(['家でも楽しめるカクテルがいい', 'お店で飲むような本格的なカクテルがいい'])
+      setDisplayChoices(false)
+    }
+
+    // カクテル > 家でも楽しめるカクテルがいい
+    if ('家でも楽しめるカクテルがいい' === choices[key]) {
+      setMessage('どんなカクテルにしましょう？')
+      setChoices(['スッキリしていて爽やかな酸味のカクテル', 'オレンジジュースみたいなカクテル', 'トマトのフレッシュなカクテル'])
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 家でも楽しめるカクテルがいい > スッキリしていて爽やかな酸味のカクテル
+    if ('スッキリしていて爽やかな酸味のカクテル' === choices[key]) {
+      setMessage('ジントニックがおすすめです。')
+      setResultOfCocktail(true)
+      setDisplayChoices(false)
+      console.log('displayChoices！！！')
+      console.log(displayChoices)
+      const recipie1 = { name: 'ジン',
+                         amount: '45ml' }
+      const recipie2 = { name: 'トニックウォーター',
+                         amount: '適量' }
+      const recipie3 = { name: 'ライム',
+                         amount: '1/8個' }
+
+      const ingredient1 = { name: 'サントリー ビーフィーター ジン40度',
+                            url: 'https://www.amazon.co.jp/dp/B001TYZWKY',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B001TYZWKY.09.MZZZZZZZ' }
+      const ingredient2 = { name: 'ウィルキンソン トニックウォーター',
+                            url: 'https://www.amazon.co.jp/dp/B08GFBKBYX',
+                            image: 'https://images-fe.ssl-images-amazon.com/images/I/41+Eng1scJL._AC_UL232_SR232,232_.jpg' }
+
+      const ingredient3 = { name: 'ライム',
+                            url: 'https://www.amazon.co.jp/dp/B07XW8TF6Y',
+                            image: 'https://images-fe.ssl-images-amazon.com/images/I/61n+ofYsjmL._AC_UL232_SR232,232_.jpg' }
+
+      setCocktailsRecipes([recipie1, recipie2, recipie3])
+      setCocktailIngredients([ingredient1, ingredient2, ingredient3])
+      setResultImage('https://www.suntory.co.jp/wnb/img/cocktail/p_gin_tonic.gif')
+    }
+
+    // ワイン > 赤ワイン > フルーティーでアーティスティックなワイン
+    if ('フルーティーでアーティスティックなワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('オノロ ベラがおすすめです。\nこちらのワインは、カシスのようなフルーティーな香りと味わいが楽しめます。\n値段は安く庶民派なワインなのですが、アカデミー賞のパーティーで飲まれたことがあるんです。\nアートを感じさせるラベルも特徴的ですね。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B00IRR9U22')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B00IRR9U22.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 赤ワイン > 軽やかでさっぱりしたワイン
+    if ('軽やかでさっぱりしたワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('フランジアがおすすめです。\nライトで軽やかな口当たりで、食事を邪魔しない普段使いのワインとしておすすめです。\n口に含んだ時に広がる、ラズベリーやチェリーのような香りがいいですね。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B002JN4NS6')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B002JN4NS6.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 白ワイン
+    if ('白ワインが飲みたいな' === choices[key]) {
+      setWhisky(true)
+      setMessage('どんなワインがお好みですか？')
+      setChoices(['辛口でさっぱりしたワイン', 'マスカットの甘さを感じるワイン', 'デザートのようなワイン'])
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 白ワイン > 辛口でさっぱりした飲み口のワイン
+    if ('辛口でさっぱりしたワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('パスクァ ビアンコ・デル・ヴェネトがおすすめです。\n辛口でスッキリした飲み口の中にフルーティーな甘さを感じます。\nお食事に良く合いますし、お値段もお手頃なので普段使いの白ワインとしていかがでしょうか。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B00335QXD2')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B00335QXD2.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 白ワイン > マスカットの甘さを感じるワイン
+    if ('マスカットの甘さを感じるワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('イエローテイル モスカートがおすすめです。\nこちらはマスカットのフルーティーでフレッシュな味わいが楽しめます。\n甘口で飲みやすいので、初心者にもおすすめです。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B003DU4SDO')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B003DU4SDO.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // ワイン > 白ワイン > デザートのようなワイン
+    if ('デザートのようなワイン' === choices[key]) {
+      setWhisky(true)
+      setMessage('サンテロ　天使のアスティがおすすめです。\nこちらは甘口のスパークリングワインになります。\nすごく甘いくジュースのようなので、お食事というよりは、食後にデザートと一緒に飲まれると良いと思いますよ。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B0036RAU68')
+      setResultImage('https://images-fe.ssl-images-amazon.com/images/I/71n8Dxp8oCL._AC_UL232_SR232,232_.jpg')
+      setDisplayChoices(false)
+    }
+
     if ('近くにいいお店がないか探したい' === choices[key]) {
       setMessage('飲食店には、かなり詳しいですよ!\n現在位置からお店を探しましょうか？\nそれとも、最寄りの駅から探しますか?')
       setChoices(['現在位置から探す', '最寄りの駅から探す'])
@@ -333,7 +449,7 @@ function App() {
       await sleep(10);
     }
     await sleep(100);
-    if (!result) {
+    if (!result && !resultOfCocktail) {
       setDisplayChoices(true)
     }
   }
@@ -383,6 +499,9 @@ function App() {
             searchByLocation={searchByLocation}
             searchByStation={searchByStation}
             setMessage={setMessage}
+            resultOfCocktail={resultOfCocktail}
+            cocktailsRecipes={cocktailsRecipes}
+            cocktailIngredients={cocktailIngredients}
           />
           </div>
         </div>
