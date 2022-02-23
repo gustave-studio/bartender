@@ -50,92 +50,166 @@ function App() {
       setDisplayChoices(false)
     }
 
-    // ワイン > 家でも楽しめるカクテルがいい > スッキリしていて爽やかな酸味のカクテル
+    // カクテル > 家でも楽しめるカクテルがいい > スッキリしていて爽やかな酸味のカクテル
     if ('スッキリしていて爽やかな酸味のカクテル' === choices[key]) {
-      setMessage('ジントニックがおすすめです。')
+      setMessage('ジントニックがおすすめです。\nトニックウォーターとライムが爽やかで万人受けするカクテルです。\n作り方は、以下のレシピ通りに材料を混ぜるだけなので、自宅でも簡単に作れますよ。')
       setResultOfCocktail(true)
       setDisplayChoices(false)
-      console.log('displayChoices！！！')
-      console.log(displayChoices)
       const recipie1 = { name: 'ジン',
                          amount: '45ml' }
       const recipie2 = { name: 'トニックウォーター',
                          amount: '適量' }
       const recipie3 = { name: 'ライム',
                          amount: '1/8個' }
-
       const ingredient1 = { name: 'サントリー ビーフィーター ジン40度',
                             url: 'https://www.amazon.co.jp/dp/B001TYZWKY',
                             image: 'https://images-na.ssl-images-amazon.com/images/P/B001TYZWKY.09.MZZZZZZZ' }
       const ingredient2 = { name: 'ウィルキンソン トニックウォーター',
                             url: 'https://www.amazon.co.jp/dp/B08GFBKBYX',
                             image: 'https://images-fe.ssl-images-amazon.com/images/I/41+Eng1scJL._AC_UL232_SR232,232_.jpg' }
-
       const ingredient3 = { name: 'ライム',
                             url: 'https://www.amazon.co.jp/dp/B07XW8TF6Y',
                             image: 'https://images-fe.ssl-images-amazon.com/images/I/61n+ofYsjmL._AC_UL232_SR232,232_.jpg' }
 
       setCocktailsRecipes([recipie1, recipie2, recipie3])
       setCocktailIngredients([ingredient1, ingredient2, ingredient3])
-      setResultImage('https://www.suntory.co.jp/wnb/img/cocktail/p_gin_tonic.gif')
+      setResultImage('')
     }
 
-    // ワイン > 赤ワイン > フルーティーでアーティスティックなワイン
-    if ('フルーティーでアーティスティックなワイン' === choices[key]) {
+    // カクテル > 家でも楽しめるカクテルがいい > オレンジジュースみたいなカクテル
+    if ('オレンジジュースみたいなカクテル' === choices[key]) {
+      setMessage('スクリュードライバーがおすすめです。\nウォッカの辛さと、オレンジジュースの甘さがマッチして、スッキリと飲みやすいカクテルになっています。\n以下のレシピ通りに材料を混ぜるだけで、自宅でも簡単に作れますよ。')
+      setResultOfCocktail(true)
+      setDisplayChoices(false)
+      const recipie1 = { name: 'ジャパニーズ クラフトウォッカ Haku (白)',
+                         amount: '45ml' }
+      const recipie2 = { name: 'オレンジジュース',
+                         amount: '適量' }
+      const ingredient1 = { name: 'ジャパニーズ クラフトウォッカ Haku (白)',
+                            url: 'https://www.amazon.co.jp/dp/B07NDR5W3P',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B07NDR5W3P.09.MZZZZZZZ' }
+      const ingredient2 = { name: "アサヒ飲料 Welch's(ウェルチ) オレンジ100",
+                            url: 'https://www.amazon.co.jp/dp/B007NCSI6Q',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B007NCSI6Q.09.MZZZZZZZ' }
+
+      setCocktailsRecipes([recipie1, recipie2])
+      setCocktailIngredients([ingredient1, ingredient2])
+      setResultImage('')
+    }
+
+    // カクテル > 家でも楽しめるカクテルがいい > トマトのフレッシュなカクテル
+    if ('トマトのフレッシュなカクテル' === choices[key]) {
+      setMessage('レッド・アイがおすすめです。\nビールとトマトジュースを半分ずつ混ぜるだけで簡単に作れちゃいます。\n私がレッド・アイを作る時は、ハマグリのエキスが入った「クラマト」というトマトジュースを使うのですが、これがメチャクチャ美味しいのでぜひ使ってみて下さい。')
+      setResultOfCocktail(true)
+      setDisplayChoices(false)
+      const recipie1 = { name: 'ビール',
+                         amount: '1/2' }
+      const recipie2 = { name: 'トマトジュース',
+                         amount: '1/2' }
+      const ingredient1 = { name: 'サッポロ 生ビール 黒ラベル',
+                            url: 'https://www.amazon.co.jp/dp/B001TRIKRS',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B001TRIKRS.09.MZZZZZZZ' }
+      const ingredient2 = { name: "モッツ クラマト トマトカクテル",
+                            url: 'https://www.amazon.co.jp/dp/B008PAWAFK',
+                            image: 'https://images-fe.ssl-images-amazon.com/images/I/41+o9HfjMoL._AC_UL232_SR232,232_.jpg' }
+
+      setCocktailsRecipes([recipie1, recipie2])
+      setCocktailIngredients([ingredient1, ingredient2])
+      setResultImage('')
+    }
+
+    // カクテル > お店で飲むような本格的なカクテルがいい
+    if ('お店で飲むような本格的なカクテルがいい' === choices[key]) {
       setWhisky(true)
-      setMessage('オノロ ベラがおすすめです。\nこちらのワインは、カシスのようなフルーティーな香りと味わいが楽しめます。\n値段は安く庶民派なワインなのですが、アカデミー賞のパーティーで飲まれたことがあるんです。\nアートを感じさせるラベルも特徴的ですね。')
-      setResult(true)
-      setResultURL('https://www.amazon.co.jp/dp/B00IRR9U22')
-      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B00IRR9U22.09.MZZZZZZZ')
+      setMessage('どんなカクテルにしますか？')
+      setChoices(['ロマンチックなカクテル', '爽やかで上品なカクテル', '甘ずっぱくて爽快感のあるカクテル'])
       setDisplayChoices(false)
     }
 
-    // ワイン > 赤ワイン > 軽やかでさっぱりしたワイン
-    if ('軽やかでさっぱりしたワイン' === choices[key]) {
-      setWhisky(true)
-      setMessage('フランジアがおすすめです。\nライトで軽やかな口当たりで、食事を邪魔しない普段使いのワインとしておすすめです。\n口に含んだ時に広がる、ラズベリーやチェリーのような香りがいいですね。')
-      setResult(true)
-      setResultURL('https://www.amazon.co.jp/dp/B002JN4NS6')
-      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B002JN4NS6.09.MZZZZZZZ')
+    // カクテル > お店で飲むような本格的なカクテルがいい > ロマンチックなカクテル
+    if ('ロマンチックなカクテル' === choices[key]) {
+      setMessage('サイドカーがおすすめです。\nサイドカーは、「いつもふたりで」という意味のあるロマンチックなカクテルです。\nブランデーの深い味わいと、ホワイトキュラソーの柑橘系の香りが魅力的なので、ぜひ飲んでみて下さい。\n作り方は、以下のレシピをシェークして作ります。')
+      setResultOfCocktail(true)
       setDisplayChoices(false)
+      const recipie1 = { name: 'ブランデー',
+                         amount: '2/4' }
+      const recipie2 = { name: 'ホワイトキュラソー',
+                         amount: '1/4' }
+      const recipie3 = { name: 'レモンジュース',
+                         amount: '1/4' }
+      const ingredient1 = { name: 'クルボアジェ VSOP ルージュ',
+                            url: 'https://www.amazon.co.jp/dp/B01LYR2ZNR',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B01LYR2ZNR.09.MZZZZZZZ' }
+      const ingredient2 = { name: 'サントリー ヘルメス ホワイトキュラソー',
+                            url: 'https://www.amazon.co.jp/dp/B0034XNELW',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B0034XNELW.09.MZZZZZZZ' }
+      const ingredient3 = { name: 'レモンジュース',
+                            url: 'https://www.amazon.co.jp/dp/B001TOZU2Y',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B001TOZU2Y.09.MZZZZZZZ' }
+      const ingredient4 = { name: 'マジックバーテンダーキット',
+                            url: 'https://www.amazon.co.jp/dp/B097BF3TW3',
+                            image: 'https://images-fe.ssl-images-amazon.com/images/I/61aRPI+tvGL._AC_UL232_SR232,232_.jpg' }
+
+      setCocktailsRecipes([recipie1, recipie2, recipie3])
+      setCocktailIngredients([ingredient1, ingredient2, ingredient3, ingredient4])
+      setResultImage('')
     }
 
-    // ワイン > 白ワイン
-    if ('白ワインが飲みたいな' === choices[key]) {
-      setWhisky(true)
-      setMessage('どんなワインがお好みですか？')
-      setChoices(['辛口でさっぱりしたワイン', 'マスカットの甘さを感じるワイン', 'デザートのようなワイン'])
+    if ('爽やかで上品なカクテル' === choices[key]) {
+      setMessage('ホワイト・レディがおすすめです。\n白い貴婦人の名に相応しく、爽やかで上品な味わいが楽しめます。ジンの辛さとレモンの酸味が合わさって最高に美味しいです。\n作り方は、以下のレシピをシェークして作ります。')
+      setResultOfCocktail(true)
       setDisplayChoices(false)
+      const recipie1 = { name: 'ジン',
+                         amount: '2/4' }
+      const recipie2 = { name: 'ホワイトキュラソー',
+                         amount: '1/4' }
+      const recipie3 = { name: 'レモンジュース',
+                         amount: '1/4' }
+      const ingredient1 = { name: 'サントリー ビーフィーター ジン40度',
+                            url: 'https://www.amazon.co.jp/dp/B001TYZWKY',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B001TYZWKY.09.MZZZZZZZ' }
+      const ingredient2 = { name: 'サントリー ヘルメス ホワイトキュラソー',
+                            url: 'https://www.amazon.co.jp/dp/B0034XNELW',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B0034XNELW.09.MZZZZZZZ' }
+      const ingredient3 = { name: 'レモンジュース',
+                            url: 'https://www.amazon.co.jp/dp/B001TOZU2Y',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B001TOZU2Y.09.MZZZZZZZ' }
+      const ingredient4 = { name: 'マジックバーテンダーキット',
+                            url: 'https://www.amazon.co.jp/dp/B097BF3TW3',
+                            image: 'https://images-fe.ssl-images-amazon.com/images/I/61aRPI+tvGL._AC_UL232_SR232,232_.jpg' }
+
+      setCocktailsRecipes([recipie1, recipie2, recipie3])
+      setCocktailIngredients([ingredient1, ingredient2, ingredient3, ingredient4])
+      setResultImage('')
     }
 
-    // ワイン > 白ワイン > 辛口でさっぱりした飲み口のワイン
-    if ('辛口でさっぱりしたワイン' === choices[key]) {
-      setWhisky(true)
-      setMessage('パスクァ ビアンコ・デル・ヴェネトがおすすめです。\n辛口でスッキリした飲み口の中にフルーティーな甘さを感じます。\nお食事に良く合いますし、お値段もお手頃なので普段使いの白ワインとしていかがでしょうか。')
-      setResult(true)
-      setResultURL('https://www.amazon.co.jp/dp/B00335QXD2')
-      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B00335QXD2.09.MZZZZZZZ')
+    // カクテル > お店で飲むような本格的なカクテルがいい > 甘ずっぱくて爽快感のあるカクテル
+    if ('甘ずっぱくて爽快感のあるカクテル' === choices[key]) {
+      setMessage('ダイキリがおすすめです。\nラム酒にライムと砂糖を入れただけという、シンプル イズ ベストなカクテルです。\n甘い方がお好みの場合は、砂糖を多めに入れて調節して下さいね。\n作り方は、以下のレシピをシェークして作ります。')
+      setResultOfCocktail(true)
       setDisplayChoices(false)
-    }
+      const recipie1 = { name: 'ブランデー',
+                         amount: '1/2' }
+      const recipie2 = { name: 'ライムジュース',
+                         amount: '1/4' }
+      const recipie3 = { name: 'シュガーシロップ',
+                         amount: 'ティースプーン1杯' }
+      const ingredient1 = { name: 'サントリー ロンリコ ホワイト',
+                            url: 'https://www.amazon.co.jp/dp/B001TZAZ00',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B001TZAZ00.09.MZZZZZZZ' }
+      const ingredient2 = { name: 'ポッカ お酒にプラスライム',
+                            url: 'https://www.amazon.co.jp/dp/B00812C26E',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B00812C26E.09.MZZZZZZZ' }
+      const ingredient3 = { name: 'キーコーヒー シュガーシロップ ポーション',
+                            url: 'https://www.amazon.co.jp/dp/B00NSP4RWQ',
+                            image: 'https://images-na.ssl-images-amazon.com/images/P/B00NSP4RWQ.09.MZZZZZZZ' }
+      const ingredient4 = { name: 'マジックバーテンダーキット',
+                            url: 'https://www.amazon.co.jp/dp/B097BF3TW3',
+                            image: 'https://images-fe.ssl-images-amazon.com/images/I/61aRPI+tvGL._AC_UL232_SR232,232_.jpg' }
 
-    // ワイン > 白ワイン > マスカットの甘さを感じるワイン
-    if ('マスカットの甘さを感じるワイン' === choices[key]) {
-      setWhisky(true)
-      setMessage('イエローテイル モスカートがおすすめです。\nこちらはマスカットのフルーティーでフレッシュな味わいが楽しめます。\n甘口で飲みやすいので、初心者にもおすすめです。')
-      setResult(true)
-      setResultURL('https://www.amazon.co.jp/dp/B003DU4SDO')
-      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B003DU4SDO.09.MZZZZZZZ')
-      setDisplayChoices(false)
-    }
-
-    // ワイン > 白ワイン > デザートのようなワイン
-    if ('デザートのようなワイン' === choices[key]) {
-      setWhisky(true)
-      setMessage('サンテロ　天使のアスティがおすすめです。\nこちらは甘口のスパークリングワインになります。\nすごく甘いくジュースのようなので、お食事というよりは、食後にデザートと一緒に飲まれると良いと思いますよ。')
-      setResult(true)
-      setResultURL('https://www.amazon.co.jp/dp/B0036RAU68')
-      setResultImage('https://images-fe.ssl-images-amazon.com/images/I/71n8Dxp8oCL._AC_UL232_SR232,232_.jpg')
-      setDisplayChoices(false)
+      setCocktailsRecipes([recipie1, recipie2, recipie3])
+      setCocktailIngredients([ingredient1, ingredient2, ingredient3, ingredient4])
+      setResultImage('')
     }
 
     if ('近くにいいお店がないか探したい' === choices[key]) {
