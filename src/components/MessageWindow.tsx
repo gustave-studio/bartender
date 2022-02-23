@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
 import ReactLoading from 'react-loading';
+import ReturnToStart from './ReturnToStart'
 
 type Recipe = {
     name: string
@@ -35,7 +36,8 @@ type MessageWindowPropsType = {
   resultOfCocktail: boolean;
   cocktailsRecipes: Array<Recipe>;
   cocktailIngredients: Array<Ingredient>;
-
+  resetState(): void;
+  displayReturnToStart: boolean;
 }
 
 const MessageWindow = function (props: MessageWindowPropsType) {
@@ -164,12 +166,20 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       <div className="result" style={{ display: props.resultOfCocktail ? '' : 'none' }}>
           <img src={props.resultImage} alt="おすすめ結果" />
       </div>
-      
+
+
+      {/* メッセージ出力 */}
       { props.displayMessage.split('\n').map((item) => (
           <div key={item}>
             {item}
           </div>
         )) }
+      
+      {/* 結果画面からスタートへ戻る */}
+      <div className="result" style={{ display: props.displayReturnToStart ? '' : 'none' }}>
+        <ReturnToStart resetState={props.resetState}/>
+      </div >
+
       <div className="choices" style={{ display: props.displayChoices ? '' : 'none' }}>
         {props.choices.map((choice, key) => (
             <span key={key}>
