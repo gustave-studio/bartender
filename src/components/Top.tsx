@@ -15,10 +15,7 @@ const Top = function (props: TopPropsType) {
 
   return (
     <>
-      <div className="main_screen">
-      </div>
-      
-      <div className="">
+      <div className="top_screen">
         <StartButton start={start}/>
       </div>
     </>

@@ -8,24 +8,11 @@ type StartPropsType = {
 
 const StartButton = (props: StartPropsType) => (
   <>
-    <Grid container>
-      <Grid item xs={3} />
-      <Grid item xs={6}>
-        <div>
-          <Stack spacing={2} direction="row">
-            <Grid item container direction="column" spacing={0}>
-              <Button
-                style={{ backgroundColor: '#ff1493', color: '#FFFFFF', fontSize: '30px' }}
-                onClick={() => props.start()}
-              >
-                START
-              </Button>
-            </Grid>
-          </Stack>
-        </div>
-      </Grid>
-      <Grid item xs={3} />
-    </Grid>
+    <div className="start_button">
+      <Button onClick={() => props.start()}>
+        はじめる
+      </Button>
+    </div>
   </>
 );
 
