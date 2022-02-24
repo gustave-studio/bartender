@@ -53,13 +53,32 @@ body {
   position: relative;
 }
 
-.top_explanatory_text {
+.top_explanatory_container {
   width: 100%;
   margin-top: 10px;
   background-color: #FFFFFF; 
 }
 
-.top_explanatory_text h2 {
+.top_explanatory_text {
+  margin: 0px 20px;
+}
+
+.top_explanatory_text img {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.center_image {
+  text-align: center;
+}
+
+.top_explanatory_container h2 {
+  text-align: center;
+  color: #333333;
+  font-size: 20px;
+}
+
+.top_explanatory_container h3 {
   text-align: center;
   color: #333333;
   font-size: 20px;
