@@ -18,6 +18,24 @@ const Top = function (props: TopPropsType) {
       <div className="top_screen">
         <StartButton start={start}/>
       </div>
+      <div className="top_explanatory_text">
+        <h2>
+          イエノミ×バーテンダーとは？
+        </h2>
+        <div>
+          サイトの説明<br />
+          サイトの説明<br />
+          サイトの説明<br />
+        </div>
+        <h2>
+          イエノミ×バーテンダーで出来ること
+        </h2>
+        <div>
+          機能の説明<br />
+          機能の説明<br />
+          機能の説明<br />
+        </div>
+      </div>
     </>
   );
 };

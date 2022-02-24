@@ -9,6 +9,10 @@ body {
   color: #FFFFFF;
 }
 
+.header h1 {
+  font-size: 25px;
+}
+
 .footer {
   width: 100%;
   height: 100px;
@@ -49,6 +53,18 @@ body {
   position: relative;
 }
 
+.top_explanatory_text {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #FFFFFF; 
+}
+
+.top_explanatory_text h2 {
+  text-align: center;
+  color: #333333;
+  font-size: 20px;
+}
+
 .start_button {
   width: 30%;
   height: 25%;
@@ -72,7 +88,7 @@ body {
 .start_text {
   width: 100%;
   height: 25%;
-  font-size: 16px;
+  font-size: 14px;
   color: #ffffff;
   /* background-color: #fa008b; */
   display: flex;
