@@ -11,12 +11,9 @@ type SoundPropsType = {
 const Sound = function (props: SoundPropsType) {
   return (
     <div className="header">
-      BGM : Gunshot Straight
-        <br />
-        Artist : MusMus
-        <br />
-        Sound
-        <br />
+      BGM : Gunshot Straight&nbsp;&nbsp;&nbsp;
+      Artist : MusMus
+      <div className="sound_button">
         { props.playing
           ?<PauseCircleOutlineIcon
             onClick={() => props.setPlaying((state) => !state)}/>
@@ -27,6 +24,7 @@ const Sound = function (props: SoundPropsType) {
           src={`${process.env.REACT_APP_SOUND_FILE}`}
           playing={props.playing}
         />
+      </div>
     </div>
   );
 };

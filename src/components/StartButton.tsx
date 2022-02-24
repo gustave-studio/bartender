@@ -13,6 +13,9 @@ const StartButton = (props: StartPropsType) => (
         はじめる
       </Button>
     </div>
+    <div className="start_text">
+    ＊BGMが再生されますので、音量にご注意下さい。
+    </div>
   </>
 );
 
