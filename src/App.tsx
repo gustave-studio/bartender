@@ -7,49 +7,53 @@ import Top from './components/Top'
 
 declare global { interface Window { cback: any } }
 
+type Recipe = {
+  name: string
+  amount: string
+}
+
+type Ingredient = {
+  name: string
+  url: string
+  image: string
+}
+
 function App() {
   const [message, setMessage] = useState('いらっしゃいませ。\nここでは、お客さんが最高のお酒に出会えるよう、お手伝いをしています。')
   const [displayMessage, setDisplayMessage] = useState('')
   const [displayChoices, setDisplayChoices] = useState(false)
   const [displayReturnToStart, setDisplayReturnToStart] = useState(false)
+  const [displayCocktailRecipie, setDisplayCocktailRecipie] = useState(false)
   const [choices, setChoices] = useState(['自分に合ったお酒を探したい', '近くにいいお店がないか探したい'])
   const [result, setResult] = useState(false)
+  const [resultOfCocktail, setResultOfCocktail] = useState(false)
   const [resultURL, setResultURL] = useState('')
   const [resultImage, setResultImage] = useState('')
   const [playing, setPlaying] = useState(false)
   const [searchByLocation, setSearchByLocation] = useState(false)
   const [searchByStation, setSearchByStation] = useState(false)
   const [isStarted, setIsStarted] = useState(false)
+  const [cocktailIngredients, setCocktailIngredients] = useState<Ingredient[]>([])
+  const [cocktailsRecipes, setCocktailsRecipes] = useState<Recipe[]>([])
 
   const resetState = () => {
     setMessage('いらっしゃいませ。\nここでは、お客さんが最高のお酒に出会えるよう、お手伝いをしています。')
     setDisplayMessage('')
     setDisplayChoices(false)
     setDisplayReturnToStart(false)
+    setDisplayCocktailRecipie(false)
     setChoices(['自分に合ったお酒を探したい', '近くにいいお店がないか探したい'])
     setResult(false)
+    setResultOfCocktail(false)
     setResultURL('')
     setResultImage('')
     // setPlaying(true)
     setSearchByLocation(false)
     setSearchByStation(false)
     // setIsStarted(true)
+    setCocktailIngredients([])
+    setCocktailsRecipes([])
   }
-
-  type Recipe = {
-    name: string
-    amount: string
-  }
-
-  type Ingredient = {
-    name: string
-    url: string
-    image: string
-  }
-
-  const [resultOfCocktail, setResultOfCocktail] = useState(false)
-  const [cocktailIngredients, setCocktailIngredients] = useState<Ingredient[]>([])
-  const [cocktailsRecipes, setCocktailsRecipes] = useState<Recipe[]>([])
 
   const selectMenu = (drink: string, key: number) => {
     // カクテル
@@ -511,6 +515,9 @@ function App() {
     await sleep(100);
     if (!result && !resultOfCocktail) {
       setDisplayChoices(true)
+    } else if(resultOfCocktail) {
+      setDisplayCocktailRecipie(true)
+      setDisplayReturnToStart(true)
     } else {
       setDisplayReturnToStart(true)
     }
@@ -566,6 +573,7 @@ function App() {
             cocktailIngredients={cocktailIngredients}
             resetState={resetState}
             displayReturnToStart={displayReturnToStart}
+            displayCocktailRecipie={displayCocktailRecipie}
           />
           </div>
         </div>

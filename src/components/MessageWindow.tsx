@@ -38,6 +38,7 @@ type MessageWindowPropsType = {
   cocktailIngredients: Array<Ingredient>;
   resetState(): void;
   displayReturnToStart: boolean;
+  displayCocktailRecipie: boolean;
 }
 
 const MessageWindow = function (props: MessageWindowPropsType) {
@@ -189,7 +190,7 @@ const MessageWindow = function (props: MessageWindowPropsType) {
         ))}
       </div>
 
-      <div className="result" style={{ display: props.resultOfCocktail ? '' : 'none' }}>
+      <div className="result" style={{ display: props.displayCocktailRecipie ? '' : 'none' }}>
         <hr />
         <h3>レシピ</h3>  
         {props.cocktailsRecipes.map((recipe, key) => (
