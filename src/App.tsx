@@ -27,6 +27,7 @@ function App() {
   const [choices, setChoices] = useState(['自分に合ったお酒を探したい', '近くにいいお店がないか探したい'])
   const [result, setResult] = useState(false)
   const [resultOfCocktail, setResultOfCocktail] = useState(false)
+  const [resultOfSearches, setResultOfSearches] = useState(false)
   const [resultURL, setResultURL] = useState('')
   const [resultImage, setResultImage] = useState('')
   const [playing, setPlaying] = useState(false)
@@ -36,6 +37,8 @@ function App() {
   const [cocktailIngredients, setCocktailIngredients] = useState<Ingredient[]>([])
   const [cocktailsRecipes, setCocktailsRecipes] = useState<Recipe[]>([])
 
+
+  console.log('-------test---------')
   const resetState = () => {
     setMessage('いらっしゃいませ。\nここでは、お客さんが最高のお酒に出会えるよう、お手伝いをしています。')
     setDisplayMessage('')
@@ -45,6 +48,7 @@ function App() {
     setChoices(['自分に合ったお酒を探したい', '近くにいいお店がないか探したい'])
     setResult(false)
     setResultOfCocktail(false)
+    setResultOfSearches(false)
     setResultURL('')
     setResultImage('')
     // setPlaying(true)
@@ -66,7 +70,7 @@ function App() {
     // カクテル > 家でも楽しめるカクテルがいい
     if ('家でも楽しめるカクテルがいい' === choices[key]) {
       setMessage('どんなカクテルにしましょう？')
-      setChoices(['スッキリしていて爽やかな酸味のカクテル', 'オレンジジュースみたいなカクテル', 'トマトのフレッシュなカクテル'])
+      setChoices(['スッキリしていて爽やかなカクテル', 'オレンジジュースみたいなカクテル', 'トマトのフレッシュなカクテル'])
       setDisplayChoices(false)
     }
 
@@ -253,7 +257,7 @@ function App() {
 
     if ('自分に合ったお酒を探したい' === choices[key]) {
       setMessage('探したいお酒の種類を教えて下さい。')
-      setChoices(['ウィスキー', 'ビール', 'ワイン', 'カクテル', 'マスターのおすすめは？', 'お酒はよくわからないのですが・・・'])
+      setChoices(['ウィスキー', 'ビール', 'ワイン', 'カクテル', 'マスターのおすすめは？'])
       setDisplayChoices(false)
     }
 
@@ -267,7 +271,7 @@ function App() {
     // ワイン > 赤ワイン
     if ('赤ワインが飲みたいな' === choices[key]) {
       setMessage('どんなワインがお好みですか？')
-      setChoices(['濃厚で飲み応えのあるワイン', 'フルーティーでアーティスティックなワイン', '軽やかでさっぱりしたワイン'])
+      setChoices(['濃厚で飲み応えのあるワイン', 'アーティスティックなワイン', '軽やかでさっぱりしたワイン'])
       setDisplayChoices(false)
     }
 
@@ -280,8 +284,8 @@ function App() {
       setDisplayChoices(false)
     }
 
-    // ワイン > 赤ワイン > フルーティーでアーティスティックなワイン
-    if ('フルーティーでアーティスティックなワイン' === choices[key]) {
+    // ワイン > 赤ワイン > アーティスティックなワイン
+    if ('アーティスティックなワイン' === choices[key]) {
       setMessage('オノロ ベラがおすすめです。\nこちらのワインは、カシスのようなフルーティーな香りと味わいが楽しめます。\n値段は安く庶民派なワインなのですが、アカデミー賞のパーティーで飲まれたことがあるんです。\nアートを感じさせるラベルも特徴的ですね。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B00IRR9U22')
@@ -574,6 +578,9 @@ function App() {
             resetState={resetState}
             displayReturnToStart={displayReturnToStart}
             displayCocktailRecipie={displayCocktailRecipie}
+            resultOfSearches={resultOfSearches}
+            setResultOfSearches={setResultOfSearches}
+            // setDisplayChoices={setDisplayChoices}
           />
           </div>
         </div>

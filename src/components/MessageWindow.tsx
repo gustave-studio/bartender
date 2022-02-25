@@ -39,6 +39,8 @@ type MessageWindowPropsType = {
   resetState(): void;
   displayReturnToStart: boolean;
   displayCocktailRecipie: boolean;
+  resultOfSearches: boolean;
+  setResultOfSearches: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const MessageWindow = function (props: MessageWindowPropsType) {
@@ -50,7 +52,7 @@ const MessageWindow = function (props: MessageWindowPropsType) {
     const [prefecture, setPrefecture] = useState("北海道");
     const [station, setStation] = useState("札幌");
     const [isSearching, setIsSearching] = useState(false);
-    const [now, setNow] = useState(Date.now());
+    // const [now, setNow] = useState(Date.now());
 
     const displayMore = () => {
         if (loadIndex > responseData.length) {
@@ -105,48 +107,63 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       };
 
       const shopInfo = () => {
+        props.setMessage('この辺のお店はもう行きました？')
+        props.setResultOfSearches(true)
+        console.log('resultOfSearches!!!!')
+        console.log(props.resultOfSearches)
+
         return (
           <>
-          <div>この辺のお店はもう行きました？</div>
-          <br />
-          <div>
-            { 
-              responseData.slice(0, loadIndex).map((data, key) => {
-                return (
-                  <Grid container className="grid_container" key={key}>
-                      <Grid item xs={2} >
-                      <div className="shop_logo_image">
-                        <img
-                          src={data['logo_image']}
-                          alt="shop_logo_image" />
-                      </div>
+          <div style={{ display: props.resultOfSearches ? '' : 'none' }}>
+            <div>
+              {
+                responseData.slice(0, loadIndex).map((data, key) => {
+
+                    console.log('typeOf')
+                    console.log('typeOf')
+                  
+
+                  return (
+                    <Grid container className="grid_container" key={key}>
+                        <Grid item xs={2} >
+                        <div className="shop_logo_image">
+                          <img
+                            src={data['logo_image']}
+                            alt="shop_logo_image" />
+                        </div>
+                        </Grid>
+                          <Grid item xs={9} >
+                          <div className="">
+                          <Card>
+                          <CardContent>
+                          <div key={key}>
+                            <a href={data['urls']['pc']}>
+                              {data['name']}
+                            </a>
+                          </div>
+                            </CardContent>
+                          </Card>
+                          </div>
                       </Grid>
-                        <Grid item xs={9} >
-                        <div className="">
-                         <Card>
-                         <CardContent>
-                         <div key={key}>
-                           <a href={data['urls']['pc']}>
-                             {data['name']}
-                           </a>
-                         </div>
-                          </CardContent>
-                         </Card>
-                         </div>
-                     </Grid>
-                     <Grid item xs={1} />
-                  </Grid>       
-                )
-              })
-            }
+                      <Grid item xs={1} />
+                    </Grid>       
+                  )
+                })
+              }
+            </div>
+            <div className="show_more_button">
+              <Button
+                disabled={isEmpty ? true : false}
+                onClick={displayMore}
+                variant="contained"
+              >
+                      さらに表示
+              </Button>
+            </div>
+            <br />
+
+            <ReturnToStart resetState={props.resetState} setResponseData={setResponseData}/>
           </div>
-          <Button
-                  disabled={isEmpty ? true : false}
-                  onClick={displayMore}
-                  variant="contained"
-                >
-                  さらに表示
-          </Button>
           </>
         )
       }
@@ -178,7 +195,7 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       
       {/* 結果画面からスタートへ戻る */}
       <div className="result" style={{ display: props.displayReturnToStart ? '' : 'none' }}>
-        <ReturnToStart resetState={props.resetState}/>
+        <ReturnToStart resetState={props.resetState} setResponseData={setResponseData}/>
       </div >
 
       <div className="choices" style={{ display: props.displayChoices ? '' : 'none' }}>
@@ -222,11 +239,6 @@ const MessageWindow = function (props: MessageWindowPropsType) {
             <div>
               <button onClick={() => getCurrentPosition()}>位置情報から探す</button>
               { isSearching ? <ReactLoading type="spin" /> : <span /> }
-              <div>
-                latitude: {position.latitude}
-                <br />
-                longitude: {position.longitude}
-              </div>
             </div>
           )}
       </div>
@@ -247,14 +259,11 @@ const MessageWindow = function (props: MessageWindowPropsType) {
         />
         <button onClick={() => searchRestaurant()}>検索</button>
       </div>
-
-      { console.log('----isFirstRef') }
-      { console.log(typeof props.isFirstRef) }
-
-      {
-        responseData.length ?
-        shopInfo() : <div></div>
-      }
+        {console.log('responseData!!!!!')}
+        {console.log(responseData.length)}
+        { 
+          responseData.length ? shopInfo() : <div></div>
+        }
      </div>
    </div>
   );

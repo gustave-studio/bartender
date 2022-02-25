@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 type ReturnToStartProps = {
   resetState(): void;
+  setResponseData: React.Dispatch<React.SetStateAction<Array<never>>>;
 }
 
 const ReturnToStart = function (props: ReturnToStartProps) {
@@ -17,7 +18,10 @@ const ReturnToStart = function (props: ReturnToStartProps) {
             <Grid item container direction="column" spacing={0}>
               <Button
                 // style={{ backgroundColor: '#ff1493', color: '#FFFFFF', fontSize: '30px' }}
-                onClick={() => props.resetState()}
+                onClick={() => { 
+                  props.resetState()
+                  props.setResponseData([])
+                }}
               >
                 最初に戻る
               </Button>

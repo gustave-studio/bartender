@@ -181,6 +181,10 @@ body {
   object-fit: cover;
 }
 
+.show_more_button {
+  text-align: center;
+}
+
 /* Webフォント読み込み */
 @font-face {
 	font-family: 'PixelMplus12-Regular';
