@@ -261,6 +261,15 @@ function App() {
       setDisplayChoices(false)
     }
 
+    // マスターのおすすめは？
+    if ('マスターのおすすめは？' === choices[key]) {
+      setMessage('好きなお酒は色々ありますが、人におすすめするのであれば、シーバスリーガル ミズナラをおすすめします。\n海外メーカーのシーバスリーガルが、日本のウィスキーファンのためにブレンドしたウィスキーがこの「ミズナラ」なんです。\nスコッチウィスキーの中ではクセが少ない方なので、スコッチをあまり飲まれない方にもおすすめ出来ますし、お値段もそこそこなので、普段使いするのにも向いてますね。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B00FBC99XQ')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B00FBC99XQ.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
     // ワイン
     if ('ワイン' === choices[key]) {
       setMessage('赤ワインと白ワインどちらが良いでしょうか？\n赤ワインは肉料理、白ワインは魚介類やパスタと合わせて飲むのがおすすめです。')
