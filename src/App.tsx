@@ -75,7 +75,7 @@ function App() {
     }
 
     // カクテル > 家でも楽しめるカクテルがいい > スッキリしていて爽やかな酸味のカクテル
-    if ('スッキリしていて爽やかな酸味のカクテル' === choices[key]) {
+    if ('スッキリしていて爽やかなカクテル' === choices[key]) {
       setMessage('ジントニックがおすすめです。\nトニックウォーターとライムが爽やかで万人受けするカクテルです。\n作り方は、以下のレシピ通りに材料を混ぜるだけなので、自宅でも簡単に作れますよ。')
       setResultOfCocktail(true)
       setDisplayChoices(false)
@@ -263,7 +263,7 @@ function App() {
 
     // マスターのおすすめは？
     if ('マスターのおすすめは？' === choices[key]) {
-      setMessage('好きなお酒は色々ありますが、人におすすめするのであれば、シーバスリーガル ミズナラをおすすめします。\n海外メーカーのシーバスリーガルが、日本のウィスキーファンのためにブレンドしたウィスキーがこの「ミズナラ」なんです。\nスコッチウィスキーの中ではクセが少ない方なので、スコッチをあまり飲まれない方にもおすすめ出来ますし、お値段もそこそこなので、普段使いするのにも向いてますね。')
+      setMessage('シーバスリーガル ミズナラがおすすめです。\n海外メーカーのシーバスリーガルが、日本のウィスキーファンのためにブレンドしたウィスキーがこの「ミズナラ」なんです。\n甘めの風味で口当たりも良いので、普段ウィスキーを飲まれない方にもおすすめ出来ます。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B00FBC99XQ')
       setResultImage('https://images-na.ssl-images-amazon.com/images/P/B00FBC99XQ.09.MZZZZZZZ')
@@ -394,7 +394,7 @@ function App() {
     }
 
      // ビール > 一般的なビール > キレと爽快感のあるビール
-     if ('旨味とコクのあるビール' === choices[key]) {
+     if ('キレと爽快感のあるビール' === choices[key]) {
       setMessage('アサヒ スーパードライがおすすめです。\n辛口で、味のキレと爽快感があるので、仕事終わりやお風呂に入った後にグイッといきたい時はこれで決まりです。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B0029ZFYJQ')
@@ -423,7 +423,7 @@ function App() {
       setMessage('COEDOビール毱花をおすすめします。\nビールの苦味の中にシトラスの香りが感じられるビールです。\n普通のビールに飽きたら毱花を味わってみて下さい。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B0775S7YQ3')
-      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B0775S7YQ3.09.MZZZZZZZ')
+      setResultImage('https://images-fe.ssl-images-amazon.com/images/I/41ehPL1uSmL._AC_UL232_SR232,232_.jpg')
       setDisplayChoices(false)
     }
 
@@ -486,16 +486,16 @@ function App() {
 
     // ウィスキー > 私の好みに合わせておすすめ教えて > クセがあっても大丈夫 > コクと甘みを感じるウィスキー
     if ('コクと甘みを感じるウィスキー' === choices[key]) {
-      setMessage('ワイルドターキー 8年がおすすめです。\nバーボン特有の甘みがあり、濃厚なコクが感じられるウィスキーです。\n値段もお手頃でコスパが良いので、普段飲みのバーボンとしておすすめです。')
+      setMessage('ワイルドターキーがおすすめです。\nバーボン特有の甘みがあり、濃厚なコクが感じられるウィスキーです。\n値段もお手頃でコスパが良いので、普段飲みのバーボンとしておすすめです。')
       setResult(true)
-      setResultURL('https://www.amazon.co.jp/dp/B001TP8L3S')
-      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B001TP8L3S.09.MZZZZZZZ')
+      setResultURL('https://www.amazon.co.jp/dp/B078HQ6LDF')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B078HQ6LDF.09.MZZZZZZZ')
       setDisplayChoices(false)
     }
 
     // ウィスキー > 私の好みに合わせておすすめ教えて > クセがあっても大丈夫 > 爽やかなウィスキー
     if ('スモーキーでほのかに甘いウィスキー' === choices[key]) {
-      setMessage('ボウモア 12年がおすすめです。\nスモーキーで少し甘みを感じる味が特徴です。\n少しクセはありますが、ハマると飲み続けてしまう中毒性がありますね。\n私も一時期ハマってよく飲んでいました。\nスコッチに興味があれば、一度は飲んで頂きたいウィスキーです。')
+      setMessage('ボウモアがおすすめです。\nスモーキーで少し甘みを感じる味が特徴です。\n少しクセはありますが、ハマると飲み続けてしまう中毒性がありますね。\n私も一時期ハマってよく飲んでいました。\nスコッチに興味があれば、一度は飲んで頂きたいウィスキーです。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B001TP8L3S')
       setResultImage('https://images-na.ssl-images-amazon.com/images/P/B001TP8L3S.09.MZZZZZZZ')
@@ -504,7 +504,7 @@ function App() {
 
     // ウィスキー > 私の好みに合わせておすすめ教えて > クセがあっても大丈夫 > 最強にスモーキーなウィスキー
     if ('最強にスモーキーなウィスキー' === choices[key]) {
-      setMessage('アードベック飲むしかないですね！アードベック 10年はいかがでしょうか？\nこれは、他のスコッチで物足りなくなった人が最終的に行き着くお酒ですね。\n私も飲むんですが、休日前にアードベックをガツんと飲んで、夜更かししてまどろんでいる時間が最高ですよ。')
+      setMessage('アードベッグ飲むしかないですね！アードベッグ 10年はいかがでしょうか？\nこれは、他のスコッチで物足りなくなった人が最終的に行き着くお酒ですね。\n私も飲むんですが、休日前にアードベッグをガツんと飲んで、夜更かししてまどろんでいる時間が最高ですよ。')
       setResult(true)
       setResultURL('https://www.amazon.co.jp/dp/B008U7SUDE')
       setResultImage('https://images-na.ssl-images-amazon.com/images/P/B008U7SUDE.09.MZZZZZZZ')
@@ -523,7 +523,7 @@ function App() {
     for (let i = 0; i < (length + 1); i++) {
       setDisplayMessage(message.slice(0, i))
       console.log(i)
-      await sleep(10);
+      await sleep(5);
     }
     await sleep(100);
     if (!result && !resultOfCocktail) {
