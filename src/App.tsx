@@ -523,7 +523,7 @@ function App() {
     for (let i = 0; i < (length + 1); i++) {
       setDisplayMessage(message.slice(0, i))
       console.log(i)
-      await sleep(5);
+      await sleep(7);
     }
     await sleep(100);
     if (!result && !resultOfCocktail) {
