@@ -24,7 +24,7 @@ function App() {
   const [displayChoices, setDisplayChoices] = useState(false)
   const [displayReturnToStart, setDisplayReturnToStart] = useState(false)
   const [displayCocktailRecipie, setDisplayCocktailRecipie] = useState(false)
-  const [choices, setChoices] = useState(['自分に合ったお酒を探したい', '近くにいいお店がないか探したい'])
+  const [choices, setChoices] = useState(['自分に合ったお酒を探したい', '家飲み用のおつまみが知りたい', '近くにいいお店がないか探したい'])
   const [result, setResult] = useState(false)
   const [resultOfCocktail, setResultOfCocktail] = useState(false)
   const [resultOfSearches, setResultOfSearches] = useState(false)
@@ -45,16 +45,14 @@ function App() {
     setDisplayChoices(false)
     setDisplayReturnToStart(false)
     setDisplayCocktailRecipie(false)
-    setChoices(['自分に合ったお酒を探したい', '近くにいいお店がないか探したい'])
+    setChoices(['自分に合ったお酒を探したい', '家飲み用のおつまみが知りたい', '近くにいいお店がないか探したい'])
     setResult(false)
     setResultOfCocktail(false)
     setResultOfSearches(false)
     setResultURL('')
     setResultImage('')
-    // setPlaying(true)
     setSearchByLocation(false)
     setSearchByStation(false)
-    // setIsStarted(true)
     setCocktailIngredients([])
     setCocktailsRecipes([])
   }
@@ -258,6 +256,48 @@ function App() {
     if ('自分に合ったお酒を探したい' === choices[key]) {
       setMessage('探したいお酒の種類を教えて下さい。')
       setChoices(['ウィスキー', 'ビール', 'ワイン', 'カクテル', 'マスターのおすすめは？'])
+      setDisplayChoices(false)
+    }
+
+    if ('家飲み用のおつまみが知りたい' === choices[key]) {
+      setMessage('どんなおつまみが食べたいですか？')
+      setChoices(['小料理っぽいのがいい', '魚がいいな', 'ナッツにしたい', 'チーズの気分'])
+      setDisplayChoices(false)
+    }
+
+    // 家飲み用のおつまみが知りたい > 小料理っぽいのがいい
+    if ('小料理っぽいのがいい' === choices[key]) {
+      setMessage('缶つま 6缶詰め合わせがおすすめです。\n少し値段は高めですが、家飲みでちょっと贅沢な気分になれますよ!')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B0978LVFMP')
+      setResultImage('https://images-fe.ssl-images-amazon.com/images/I/71yYid7G02L._AC_UL232_SR232,232_.jpg')
+      setDisplayChoices(false)
+    }
+
+    // 家飲み用のおつまみが知りたい > 魚がいいな
+    if ('魚がいいな' === choices[key]) {
+      setMessage('THE さBAR ザ・サバーがおすすめです。\n鯖の燻製なのですが、スモーキーさは少なくクセがないので、どなたでもお召し上がりになれると思います。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B07CRNF4PL')
+      setResultImage('https://images-na.ssl-images-amazon.com/images/P/B07CRNF4PL.09.MZZZZZZZ')
+      setDisplayChoices(false)
+    }
+
+    // 家飲み用のおつまみが知りたい > ナッツにしたい
+    if ('ナッツにしたい' === choices[key]) {
+      setMessage('食いしんBAR 素焼ミックスナッツ 徳用 300gがおすすめです。\nナッツはどんなお酒にでも合うので、私はミックスナッツを大量に備蓄してるんですよね。お徳用で買うのおすすめですよ。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B09F9MG59N')
+      setResultImage('https://images-fe.ssl-images-amazon.com/images/I/71Z52hXV0HL._AC_UL232_SR232,232_.jpg')
+      setDisplayChoices(false)
+    }
+
+    // 家飲み用のおつまみが知りたい > チーズの気分
+    if ('チーズの気分' === choices[key]) {
+      setMessage('チーズコレクション アソート バルク 500gがおすすめです。\nこれ色んな種類のチーズが入っているので、飽きなくていいですよ。KALDIにもう少し小さいサイズが置いてあるのを見たので、近くにKALDIがある方は、小さいサイズで試してみると良いかもしれませんね。')
+      setResult(true)
+      setResultURL('https://www.amazon.co.jp/dp/B09MDZ52QF')
+      setResultImage('https://images-fe.ssl-images-amazon.com/images/I/51gbTjM-uBL._AC_UL232_SR232,232_.jpg')
       setDisplayChoices(false)
     }
 
