@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
 import ReactLoading from 'react-loading';
 import ReturnToStart from './ReturnToStart'
+import ShareButton from './ShareButton'
 
 type Recipe = {
     name: string
@@ -163,6 +164,8 @@ const MessageWindow = function (props: MessageWindowPropsType) {
             <br />
 
             <ReturnToStart resetState={props.resetState} setResponseData={setResponseData}/>
+            <br />
+            <ShareButton />
           </div>
           </>
         )
@@ -196,6 +199,8 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       {/* 結果画面からスタートへ戻る */}
       <div className="result" style={{ display: props.displayReturnToStart ? '' : 'none' }}>
         <ReturnToStart resetState={props.resetState} setResponseData={setResponseData}/>
+        <br />
+        <ShareButton />
       </div >
 
       <div className="choices" style={{ display: props.displayChoices ? '' : 'none' }}>
