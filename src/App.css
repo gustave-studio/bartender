@@ -1,6 +1,7 @@
 body {
   background-color: #000000;
   background: url("/public/skyscrapers-gee6dac507_1920.jpg");
+  font-family: 'Slabo'; 
 }
 
 .header {
@@ -56,11 +57,12 @@ body {
 .top_explanatory_container {
   width: 100%;
   margin-top: 10px;
+  padding: 10px;
   background-color: #FFFFFF; 
 }
 
 .top_explanatory_text {
-  margin: 0px 20px;
+  padding: 10px;
 }
 
 .top_explanatory_text img {
@@ -76,6 +78,10 @@ body {
   text-align: center;
   color: #333333;
   font-size: 20px;
+  max-width: 500px;
+  margin: 10px auto;
+  text-align: center;
+  border-bottom: double 5px #fa008b;
 }
 
 .top_explanatory_container h3 {

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { ReactHTMLElement } from 'react';
 import Prefectures from '../prefectures.js';
+import Genre from '../genre.js';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import ReactLoading from 'react-loading';
 import ReturnToStart from './ReturnToStart'
 import ShareButton from './ShareButton'
+import CheckBox from './CheckBox'
 
 type Recipe = {
     name: string
@@ -51,9 +53,27 @@ const MessageWindow = function (props: MessageWindowPropsType) {
     const [isEmpty, setIsEmpty] = useState(false);
     const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
     const [prefecture, setPrefecture] = useState("北海道");
+    const [genre, setGenre] = useState("G002");
     const [station, setStation] = useState("札幌");
     const [isSearching, setIsSearching] = useState(false);
-    // const [now, setNow] = useState(Date.now());
+    const [freeDrinkFlag, setFreeDrinkFlag] = useState(false);
+    const checkLists = [
+      { id: 1, label: "飲み放題あり", checked: freeDrinkFlag }
+    ]
+    //checkedItemsは初期値を空のオブジェクトにする
+    // const [checkedItems, setCheckedItems] = useState<Array<CheckStateType>>([])
+    const [checked, setChecked] = useState(false);
+
+    const handleChange = (id: number, checked: boolean) => {
+      //checkedItemsのstateをセット
+      switch (id) {
+        case 1:
+          setFreeDrinkFlag(checked);
+          break;
+      } 
+      // console.log('checkedItems:', checkedItems)
+    }
+
 
     const displayMore = () => {
         if (loadIndex > responseData.length) {
@@ -65,18 +85,23 @@ const MessageWindow = function (props: MessageWindowPropsType) {
 
       const fetchHotpepperAPI = async (x: string, y: string) => {
         const api_key = process.env.REACT_APP_HOTPEPPER_API_KEY
-        await axios.get(`https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=3&order=4&count=100&format=jsonp`, {
+        console.log('---url!!!!!')
+        console.log(`https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=3&order=4&count=100&format=jsonp&free_drink=${freeDrinkFlag ? 1 : 0}&genre=${genre}`)
+        await axios.get(`https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${api_key}&lat=${y}&lng=${x}&range=3&order=4&count=100&format=jsonp&free_drink=${freeDrinkFlag ? 1 : 0}&genre=${genre}`, {
           adapter: jsonpAdapter
         })
         .then((response: any) => {
-            console.log('ホットペッパー取得');
+          console.log('ホットペッパー取得');
           setResponseData(response.data.results.shop)
+          if (response.data.results.results_available === 0) {
+            props.setMessage('条件に一致するお店はありませんね。違う条件でもう一度探しましょうか。')
+          }
           setIsSearching(false)
         })
       }
     
     const searchRestaurant = async () => {
-      await axios.get(`https://express.heartrails.com/api/json?method=getStations&name=${station}&prefecture=${prefecture}`)
+      await axios.get(`https://express.heartrails.com/api/json?method=getStations&name=${station}&prefecture=${prefecture}&free_drink=${freeDrinkFlag}&genre=${genre}`)
         .then((response: any) => {
           fetchHotpepperAPI(response.data.response.station[0].x, response.data.response.station[0].y)
       })
@@ -100,8 +125,6 @@ const MessageWindow = function (props: MessageWindowPropsType) {
         navigator.geolocation.getCurrentPosition(position => {
           const { latitude, longitude } = position.coords;
           setPosition({ latitude, longitude });
-          console.log('-----!!')
-          console.log(typeof(latitude))
           fetchHotpepperAPI(String(longitude), String(latitude))
           clearTimeout(timer)
         });
@@ -110,8 +133,6 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       const shopInfo = () => {
         props.setMessage('この辺のお店はもう行きました？')
         props.setResultOfSearches(true)
-        console.log('resultOfSearches!!!!')
-        console.log(props.resultOfSearches)
 
         return (
           <>
@@ -119,10 +140,6 @@ const MessageWindow = function (props: MessageWindowPropsType) {
             <div>
               {
                 responseData.slice(0, loadIndex).map((data, key) => {
-
-                    console.log('typeOf')
-                    console.log('typeOf')
-                  
 
                   return (
                     <Grid container className="grid_container" key={key}>
@@ -238,6 +255,30 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       </div>
 
       <div style={{ display: props.searchByLocation ? '' : 'none' }}>
+      <br />
+      <label>お店の種類:</label>
+      <select onChange={event => setGenre(event.target.value)}>
+        {Genre.OPTIONS.map((genre, key) => {
+          return (<option value={genre.code} key={key} >{genre.name}</option>)
+        })}
+      </select>
+      <br />
+      <form>
+        <label>お店の条件:</label>
+        {checkLists.map((item, index: number) => {
+          return (
+            <label htmlFor={`id_${index}`} key={`key_${index}`}>
+              <CheckBox
+                id={item.id}
+                value={item.label}
+                handleChange={handleChange}
+                checked={item.checked}
+              />
+              {item.label}
+            </label>
+          )
+        })}
+      </form>
        {/* <p>位置情報から探す</p> */}
           {!props.isFirstRef && !props.isAvailable && <p className="App-error-text">geolocation IS NOT available</p>}
           {props.isAvailable && (
@@ -262,6 +303,30 @@ const MessageWindow = function (props: MessageWindowPropsType) {
             value={station}
             onChange={event => setStation(event.target.value)}
         />
+        <br />
+        <label>お店の種類:</label>
+        <select onChange={event => setGenre(event.target.value)}>
+        {Genre.OPTIONS.map((genre, key) => {
+          return (<option value={genre.code} key={key} >{genre.name}</option>)
+        })}
+        </select>
+        <br />
+        <form>
+          <label>お店の条件:</label>
+          {checkLists.map((item, index: number) => {
+            return (
+              <label htmlFor={`id_${index}`} key={`key_${index}`}>
+                <CheckBox
+                  id={item.id}
+                  value={item.label}
+                  handleChange={handleChange}
+                  checked={item.checked}
+                />
+                {item.label}
+              </label>
+            )
+          })}
+        </form>
         <button onClick={() => searchRestaurant()}>検索</button>
       </div>
         {console.log('responseData!!!!!')}
