@@ -38,7 +38,6 @@ function App() {
   const [cocktailsRecipes, setCocktailsRecipes] = useState<Recipe[]>([])
 
 
-  console.log('-------test---------')
   const resetState = () => {
     setMessage('いらっしゃいませ。\nここでは、お客さんが最高のお酒に出会えるよう、お手伝いをしています。')
     setDisplayMessage('')
@@ -240,14 +239,14 @@ function App() {
     }
 
     if ('現在位置から探す' === choices[key]) {
-      setMessage('お使いのブラウザの位置情報取得を許可しておいて下さいね。\n')
+      setMessage('お使いのブラウザの位置情報取得を許可しておいて下さいね。\nもし、探したいお店の種類や条件があったら教えて下さい。')
       setChoices([])
       setSearchByLocation(true)
       setDisplayChoices(false)
     }
 
     if ('最寄りの駅から探す' === choices[key]) {
-      setMessage('都道府県と駅名を教えて頂けませんか？')
+      setMessage('都道府県と駅名を教えて頂けませんか？\n探したいお店の種類や条件があったら、それも教えて下さい。')
       setChoices([])
       setSearchByStation(true)
       setDisplayChoices(false)

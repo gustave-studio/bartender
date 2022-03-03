@@ -71,7 +71,6 @@ const MessageWindow = function (props: MessageWindowPropsType) {
           setFreeDrinkFlag(checked);
           break;
       } 
-      // console.log('checkedItems:', checkedItems)
     }
 
 
@@ -93,6 +92,8 @@ const MessageWindow = function (props: MessageWindowPropsType) {
         .then((response: any) => {
           console.log('ホットペッパー取得');
           setResponseData(response.data.results.shop)
+          props.setMessage('この辺のお店はもう行きました？')
+          props.setResultOfSearches(true)
           if (response.data.results.results_available === 0) {
             props.setMessage('条件に一致するお店はありませんね。違う条件でもう一度探しましょうか。')
           }
@@ -131,9 +132,6 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       };
 
       const shopInfo = () => {
-        props.setMessage('この辺のお店はもう行きました？')
-        props.setResultOfSearches(true)
-
         return (
           <>
           <div style={{ display: props.resultOfSearches ? '' : 'none' }}>
@@ -329,8 +327,6 @@ const MessageWindow = function (props: MessageWindowPropsType) {
         </form>
         <button onClick={() => searchRestaurant()}>検索</button>
       </div>
-        {console.log('responseData!!!!!')}
-        {console.log(responseData.length)}
         { 
           responseData.length ? shopInfo() : <div></div>
         }

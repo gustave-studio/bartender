@@ -8,9 +8,6 @@ type CheckBoxProps = {
 }
 
 const CheckBox = (props: CheckBoxProps) => {
-  // console.log('checked!!!!!!')
-  // console.log(props.checked)
-  // const checked = 
   return (
     <input
       id={`props.id`}
