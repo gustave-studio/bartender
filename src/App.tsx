@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Sound from './components/Sound'
 import MessageWindow from './components/MessageWindow'
 import Top from './components/Top'
+import Footer from './components/Footer';
 
 declare global { interface Window { cback: any } }
 
@@ -599,7 +600,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-      <Header />
+        <Header />
         <div style={{ display: isStarted ? 'none' : '' }}>
           <Top setIsStarted={setIsStarted} setPlaying={setPlaying} setInteger={setInteger}/>
         </div>
@@ -632,6 +633,7 @@ function App() {
           />
           </div>
         </div>
+        <Footer />
     </div>
   );
 }
