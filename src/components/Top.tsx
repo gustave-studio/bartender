@@ -19,20 +19,26 @@ const Top = function (props: TopPropsType) {
         <StartButton start={start}/>
       </div>
       <div className="top_explanatory_container">
-        <h2>
-          イエノミ×バーテンダーとは？
-        </h2>
+        <div className="top_explanatory_label_container">
+          <h2>
+            イエノミ×バーテンダーとは？
+          </h2>
+        </div>
         <div className="top_explanatory_text">
           架空のバーテンダーにおすすめのお酒を診断してもらうサイトです。
           <br />
           家に居ながら素敵なお酒に出会うことが出来ます。
           <br />
         </div>
-        <h2>
-          イエノミ×バーテンダーで出来ること
-        </h2>
+        <br />
+        <br />
+        <div className="top_explanatory_label_container">
+          <h2>
+            使い方
+          </h2>
+        </div>
         <div className="top_explanatory_text">
-          <h3>- おすすめのお酒診断 -</h3>
+          <h3>- おすすめのお酒、おつまみを探す -</h3>
           バーテンダーに「自分に合ったお酒を探したい」と伝えると、いくつか質問されます。
           <br />
           質問に答えて自分に合ったお酒を診断してもらいましょう！

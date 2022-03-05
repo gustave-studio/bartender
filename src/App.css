@@ -57,12 +57,11 @@ body {
 .top_explanatory_container {
   width: 100%;
   margin-top: 10px;
-  padding: 10px;
   background-color: #FFFFFF; 
 }
 
 .top_explanatory_text {
-  padding: 10px;
+  padding: 0px 20px;
 }
 
 .top_explanatory_text img {
@@ -74,27 +73,60 @@ body {
   text-align: center;
 }
 
+.top_explanatory_label_container {
+  padding: 0px 20px;
+}
+
 .top_explanatory_container h2 {
-  text-align: center;
-  color: #333333;
-  font-size: 20px;
-  max-width: 500px;
+  width: 100%;
   margin: 10px auto;
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
-  border-bottom: double 5px #fa008b;
+  padding: 0 30px;
+  font-size: 18px;
+  background: #ff3695;
+  color: #FFF;
+  box-sizing: border-box;
+}
+
+.top_explanatory_container h2:before, .top_explanatory_container h2:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.top_explanatory_container h2:before {
+  top: 0;
+  left: 0;
+  border-width: 25px 0px 25px 15px;
+  border-color: transparent transparent transparent #fff;
+  border-style: solid;
+}
+
+.top_explanatory_container h2:after {
+  top: 0;
+  right: 0;
+  border-width: 25px 15px 25px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
 }
 
 .top_explanatory_container h3 {
   text-align: center;
   color: #333333;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .start_button {
   width: 30%;
   height: 25%;
   color: #ffffff;
-  background-color: #fa008b;
+  background-color: #ff3695;
   display: flex;
   justify-content: center;
   align-items: center;
