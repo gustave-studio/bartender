@@ -75,6 +75,7 @@ function App() {
     // カクテル > 家でも楽しめるカクテルがいい > スッキリしていて爽やかな酸味のカクテル
     if ('スッキリしていて爽やかなカクテル' === choices[key]) {
       setMessage('ジントニックがおすすめです。\nトニックウォーターとライムが爽やかで万人受けするカクテルです。\n作り方は、以下のレシピ通りに材料を混ぜるだけなので、自宅でも簡単に作れますよ。')
+      setResultImage('https://bartender-gs.s3.ap-northeast-1.amazonaws.com/gin_tonic.png')
       setResultOfCocktail(true)
       setDisplayChoices(false)
       const recipie1 = { name: 'ジン',
@@ -95,12 +96,12 @@ function App() {
 
       setCocktailsRecipes([recipie1, recipie2, recipie3])
       setCocktailIngredients([ingredient1, ingredient2, ingredient3])
-      setResultImage('')
     }
 
     // カクテル > 家でも楽しめるカクテルがいい > オレンジジュースみたいなカクテル
     if ('オレンジジュースみたいなカクテル' === choices[key]) {
       setMessage('スクリュードライバーがおすすめです。\nウォッカの辛さと、オレンジジュースの甘さがマッチして、スッキリと飲みやすいカクテルになっています。\n以下のレシピ通りに材料を混ぜるだけで、自宅でも簡単に作れますよ。')
+      setResultImage('https://bartender-gs.s3.ap-northeast-1.amazonaws.com/screw_driver.png')
       setResultOfCocktail(true)
       setDisplayChoices(false)
       const recipie1 = { name: 'ジャパニーズ クラフトウォッカ Haku (白)',
@@ -116,12 +117,12 @@ function App() {
 
       setCocktailsRecipes([recipie1, recipie2])
       setCocktailIngredients([ingredient1, ingredient2])
-      setResultImage('')
     }
 
     // カクテル > 家でも楽しめるカクテルがいい > トマトのフレッシュなカクテル
     if ('トマトのフレッシュなカクテル' === choices[key]) {
       setMessage('レッド・アイがおすすめです。\nビールとトマトジュースを半分ずつ混ぜるだけで簡単に作れちゃいます。\n私がレッド・アイを作る時は、ハマグリのエキスが入った「クラマト」というトマトジュースを使うのですが、これがメチャクチャ美味しいのでぜひ使ってみて下さい。')
+      setResultImage('https://bartender-gs.s3.ap-northeast-1.amazonaws.com/red_eye.png')
       setResultOfCocktail(true)
       setDisplayChoices(false)
       const recipie1 = { name: 'ビール',
@@ -137,7 +138,6 @@ function App() {
 
       setCocktailsRecipes([recipie1, recipie2])
       setCocktailIngredients([ingredient1, ingredient2])
-      setResultImage('')
     }
 
     // カクテル > お店で飲むような本格的なカクテルがいい
@@ -150,6 +150,7 @@ function App() {
     // カクテル > お店で飲むような本格的なカクテルがいい > ロマンチックなカクテル
     if ('ロマンチックなカクテル' === choices[key]) {
       setMessage('サイドカーがおすすめです。\nサイドカーは、「いつもふたりで」という意味のあるロマンチックなカクテルです。\nブランデーの深い味わいと、ホワイトキュラソーの柑橘系の香りが魅力的なので、ぜひ飲んでみて下さい。\n作り方は、以下のレシピをシェークして作ります。')
+      setResultImage('https://bartender-gs.s3.ap-northeast-1.amazonaws.com/side_car.png')
       setResultOfCocktail(true)
       setDisplayChoices(false)
       const recipie1 = { name: 'ブランデー',
@@ -173,11 +174,13 @@ function App() {
 
       setCocktailsRecipes([recipie1, recipie2, recipie3])
       setCocktailIngredients([ingredient1, ingredient2, ingredient3, ingredient4])
-      setResultImage('')
     }
 
     if ('爽やかで上品なカクテル' === choices[key]) {
       setMessage('ホワイト・レディがおすすめです。\n白い貴婦人の名に相応しく、爽やかで上品な味わいが楽しめます。ジンの辛さとレモンの酸味が合わさって最高に美味しいです。\n作り方は、以下のレシピをシェークして作ります。')
+      setResultImage('https://bartender-gs.s3.ap-northeast-1.amazonaws.com/white_lady.png')
+      console.log("resultImage!!!!")
+      console.log(resultImage)
       setResultOfCocktail(true)
       setDisplayChoices(false)
       const recipie1 = { name: 'ジン',
@@ -201,12 +204,12 @@ function App() {
 
       setCocktailsRecipes([recipie1, recipie2, recipie3])
       setCocktailIngredients([ingredient1, ingredient2, ingredient3, ingredient4])
-      setResultImage('')
     }
 
     // カクテル > お店で飲むような本格的なカクテルがいい > 甘ずっぱくて爽快感のあるカクテル
     if ('甘ずっぱくて爽快感のあるカクテル' === choices[key]) {
       setMessage('ダイキリがおすすめです。\nラム酒にライムと砂糖を入れただけという、シンプル イズ ベストなカクテルです。\n甘い方がお好みの場合は、砂糖を多めに入れて調節して下さいね。\n作り方は、以下のレシピをシェークして作ります。')
+      setResultImage('https://bartender-gs.s3.ap-northeast-1.amazonaws.com/dai_quiri.png')
       setResultOfCocktail(true)
       setDisplayChoices(false)
       const recipie1 = { name: 'ブランデー',
@@ -230,7 +233,6 @@ function App() {
 
       setCocktailsRecipes([recipie1, recipie2, recipie3])
       setCocktailIngredients([ingredient1, ingredient2, ingredient3, ingredient4])
-      setResultImage('')
     }
 
     if ('近くにいいお店がないか探したい' === choices[key]) {

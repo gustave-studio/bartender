@@ -52,9 +52,9 @@ const MessageWindow = function (props: MessageWindowPropsType) {
     const [loadIndex, setLoadIndex] = useState(5);
     const [isEmpty, setIsEmpty] = useState(false);
     const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
-    const [prefecture, setPrefecture] = useState("北海道");
+    const [prefecture, setPrefecture] = useState("東京都");
     const [genre, setGenre] = useState("G002");
-    const [station, setStation] = useState("札幌");
+    const [station, setStation] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const [freeDrinkFlag, setFreeDrinkFlag] = useState(false);
     const checkLists = [
@@ -200,7 +200,7 @@ const MessageWindow = function (props: MessageWindowPropsType) {
       </div>
       {/* カクテルの結果画像 */}
       <div className="result" style={{ display: props.resultOfCocktail ? '' : 'none' }}>
-          <img src={props.resultImage} alt="おすすめ結果" />
+          <img src={props.resultImage} alt="おすすめ結果" width="300" height="200"/>
       </div>
 
 
@@ -289,9 +289,13 @@ const MessageWindow = function (props: MessageWindowPropsType) {
 
       <div style={{ display: props.searchByStation ? '' : 'none' }}>
         <label>都道府県:</label>
-        <select onChange={event => setPrefecture(event.target.value)}>
+        <select defaultValue={'東京都'} onChange={event => setPrefecture(event.target.value)}>
             {Prefectures.OPTIONS.map((option, key) => {
-            return (<option value={option} key={key} >{option}</option>)
+              // if (key === 12) {
+              //   return (<option value={option} key={key} selected>{option}</option>) 
+              // } else {
+                return (<option value={option} key={key}>{option}</option>)
+              // }
             })}
         </select>
         <br />
