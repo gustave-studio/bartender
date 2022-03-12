@@ -1,38 +1,251 @@
-.App {
+body {
+  background-color: #000000;
+  background: url("/public/skyscrapers-gee6dac507_1920.jpg");
+  font-family: 'Slabo'; 
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  color: #FFFFFF;
+}
+
+.footer {
+  width: 100%;
+  background-color: #000000;
+  color: #fff;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.footer_text {
+  margin: 10px;
+  padding-top: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.footer_text a {
+  color: #fff;
+  text-decoration: underline;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header h1 {
+  font-size: 25px;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  color: #FFFFFF;
+}
+
+.container {
+  width: 100%;
+  max-width: 750px;
+  margin: auto;
+}
+
+.main_screen {
+  width: 100%;
+  height: 0;
+  padding-top: 66.6666666667%;
+  background-color: aqua; 
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center; 
+  background: url("/public/mabataki.gif") center center no-repeat;
+  background-size: cover;
+  border: solid 1px #333333;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.top_screen {
+  width: 100%;
+  height: 0;
+  padding-top: 66.6666666667%;
+  background-color: aqua; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background: url("/public/top_image.png") center center no-repeat;
+  background-size: cover;
+  border: solid 1px #333333;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.top_explanatory_container {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #FFFFFF; 
+}
+
+.top_explanatory_text {
+  padding: 0px 20px;
+}
+
+.top_explanatory_text img {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.center_image {
+  text-align: center;
+}
+
+.top_explanatory_label_container {
+  padding: 0px 20px;
+}
+
+.top_explanatory_container h2 {
+  width: 100%;
+  margin: 10px auto;
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  padding: 0 30px;
+  font-size: 18px;
+  background: #ff3695;
+  color: #FFF;
+  box-sizing: border-box;
+}
+
+.top_explanatory_container h2:before, .top_explanatory_container h2:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.top_explanatory_container h2:before {
+  top: 0;
+  left: 0;
+  border-width: 25px 0px 25px 15px;
+  border-color: transparent transparent transparent #fff;
+  border-style: solid;
+}
+
+.top_explanatory_container h2:after {
+  top: 0;
+  right: 0;
+  border-width: 25px 15px 25px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+}
+
+.top_explanatory_container h3 {
+  text-align: center;
+  color: #333333;
+  font-size: 16px;
+}
+
+.start_button {
+  width: 30%;
+  height: 25%;
+  color: #ffffff;
+  background-color: #ff3695;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  left: 35%;
+}
+
+.start_button button {
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+.start_text {
+  width: 100%;
+  height: 25%;
+  font-size: 14px;
+  color: #ffffff;
+  /* background-color: #fa008b; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  cursor: pointer;
+  position: absolute;
+  top: 65%;
+  /* left: 5%; */
+  color: #FFFFFF;
+  display: flex;
+  position: absolute;
+}
+
+.message_window {
+  width: 100%;
+  color: #FFFFFF;
+  font-family: 'PixelMplus12-Regular';
+  font-size: 16px;
+  line-height: 25px;
+  background-color: #000000;
+  border: solid 1px #333333;
+}
+
+.message {
+  margin: 10px;
+}
+
+.message_window button {
+  color: #FFFFFF;
+  font-family: 'PixelMplus12-Regular';
+  font-size: 16px;
+  line-height: 25px;
+  background-color: #000000;
+  padding: 3px;
+  margin: 3px;
+  border: solid 3px #333333;
+}
+
+.choices {
+  margin-top: 10px;
+}
+
+.result {
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.result a {
+  color: #ffc400;
+  text-decoration: underline;
+}
+
+.grid_container {
+  /* vertical-align: middle; */
+  display: flex;
+	align-items: center;
+	justify-content: center;
+  margin: 5px;
+}
+
+.shop_logo_image {
+  width: 100%;
+  max-width: 100px;
+}
+
+.shop_logo_image img {
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.show_more_button {
+  text-align: center;
+}
+
+.share_button_container {
+  text-align: center;
+}
+
+/* Webフォント読み込み */
+@font-face {
+	font-family: 'PixelMplus12-Regular';
+	src: url('/public/PixelMplus12-Regular.ttf') format("truetype");
 }
