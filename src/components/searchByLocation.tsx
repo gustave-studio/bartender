@@ -9,8 +9,8 @@ type CheckListElement = {
   checked: boolean
 }
 
-type searchByLocationProps = {
-  searchByLocation: boolean;
+type SearchByLocationProps = {
+  isSearchByLocation: boolean;
   checkLists: Array<CheckListElement>;
   setGenre: React.Dispatch<React.SetStateAction<string>>;
   handleChange(id: number, checked: boolean): void;
@@ -20,10 +20,10 @@ type searchByLocationProps = {
   getCurrentPosition(): void;
 }
 
-const searchByLocation = function (props: searchByLocationProps) {
+const SearchByLocation = function (props: SearchByLocationProps) {
   return (
     <>
-      <div style={{ display: props.searchByLocation ? '' : 'none' }}>
+      <div style={{ display: props.isSearchByLocation ? '' : 'none' }}>
       <br />
       <label>お店の種類:</label>
       <select onChange={event => props.setGenre(event.target.value)}>
@@ -61,4 +61,4 @@ const searchByLocation = function (props: searchByLocationProps) {
   );
 };
 
-export default searchByLocation;
+export default SearchByLocation;

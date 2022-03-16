@@ -9,7 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import ReturnToStart from './ReturnToStart'
 import ShareButton from './ShareButton'
 import CheckBox from './CheckBox'
-import SearchByLocation from './searchByLocation'
+import SearchByLocation from './SearchByLocation';
 import Genre from '../genre.js';
 
 type Recipe = {
@@ -41,8 +41,8 @@ const MessageWindow = function () {
   const [resultOfSearches, setResultOfSearches] = useState(false)
   const [resultURL, setResultURL] = useState('')
   const [resultImage, setResultImage] = useState('')
-  const [searchByLocation, setSearchByLocation] = useState(false)
-  const [searchByStation, setSearchByStation] = useState(false)
+  const [isSearchByLocation, setSearchByLocation] = useState(false)
+  const [isSearchByStation, setSearchByStation] = useState(false)
   const [cocktailIngredients, setCocktailIngredients] = useState<Ingredient[]>([])
   const [cocktailsRecipes, setCocktailsRecipes] = useState<Recipe[]>([])
   const [isAvailable, setAvailable] = useState(false);
@@ -812,7 +812,7 @@ const MessageWindow = function () {
 
 
       <SearchByLocation
-        searchByLocation={searchByLocation}
+        isSearchByLocation={isSearchByLocation}
         checkLists={checkLists}
         setGenre={setGenre}
         handleChange={handleChange}
@@ -826,7 +826,7 @@ const MessageWindow = function () {
 
 
 
-      <div style={{ display: searchByStation ? '' : 'none' }}>
+      <div style={{ display: isSearchByStation ? '' : 'none' }}>
         <label>都道府県:</label>
         <select defaultValue={'東京都'} onChange={event => setPrefecture(event.target.value)}>
             {Prefectures.OPTIONS.map((option, key) => {
