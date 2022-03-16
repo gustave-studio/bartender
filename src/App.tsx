@@ -37,6 +37,9 @@ function App() {
   const [isStarted, setIsStarted] = useState(false)
   const [cocktailIngredients, setCocktailIngredients] = useState<Ingredient[]>([])
   const [cocktailsRecipes, setCocktailsRecipes] = useState<Recipe[]>([])
+  const [isAvailable, setAvailable] = useState(false);
+
+  const isFirstRef = useRef(true);
 
 
   const resetState = () => {
@@ -554,13 +557,11 @@ function App() {
     }
   }
 
-  // const [i, setI] = useState(1)
-
   function sleep(milliseconds: number) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
+  }
 
-  const setInteger = async () => {
+  const talking = async () => {
     let length = message.length
     for (let i = 0; i < (length + 1); i++) {
       setDisplayMessage(message.slice(0, i))
@@ -579,16 +580,9 @@ function App() {
   }
 
   useEffect(() => {
-    setInteger()
+    talking()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);
-
-
-  // const [currentPost, setCurrentPost] = useState([]);
-
-  const [isAvailable, setAvailable] = useState(false);
-
-
-  const isFirstRef = useRef(true);
 
   useEffect(() => {
     isFirstRef.current = false;
@@ -604,7 +598,7 @@ function App() {
       <div className="container">
         <Header />
         <div style={{ display: isStarted ? 'none' : '' }}>
-          <Top setIsStarted={setIsStarted} setPlaying={setPlaying} setInteger={setInteger}/>
+          <Top setIsStarted={setIsStarted} setPlaying={setPlaying} talking={talking}/>
         </div>
         <div style={{ display: isStarted ? '' : 'none' }}>
           <Sound playing={playing} setPlaying={setPlaying} />
