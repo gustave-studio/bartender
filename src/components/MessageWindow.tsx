@@ -1,16 +1,16 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { ReactHTMLElement } from 'react';
 import Prefectures from '../prefectures.js';
-import Genre from '../genre.js';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@mui/material/CardContent';
-import ReactLoading from 'react-loading';
 import ReturnToStart from './ReturnToStart'
 import ShareButton from './ShareButton'
 import CheckBox from './CheckBox'
+import SearchByStationProps from './SearchByStationProps'
+import Genre from '../genre.js';
 
 type Recipe = {
     name: string
@@ -21,6 +21,12 @@ type Ingredient = {
     name: string
     url: string
     image: string
+  }
+
+type CheckListElement = {
+    id: number
+    label: string
+    checked: boolean
   }
 
 const MessageWindow = function () {
@@ -50,8 +56,13 @@ const MessageWindow = function () {
   const [station, setStation] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [freeDrinkFlag, setFreeDrinkFlag] = useState(false);
+  const checkElement1: CheckListElement = {
+    id: 1,
+    label: "飲み放題あり",
+    checked: freeDrinkFlag
+  };
   const checkLists = [
-    { id: 1, label: "飲み放題あり", checked: freeDrinkFlag }
+    checkElement1
   ]
   //checkedItemsは初期値を空のオブジェクトにする
   // const [checkedItems, setCheckedItems] = useState<Array<CheckStateType>>([])
@@ -798,40 +809,22 @@ const MessageWindow = function () {
           ))}
       </div>
 
-      <div style={{ display: searchByLocation ? '' : 'none' }}>
-      <br />
-      <label>お店の種類:</label>
-      <select onChange={event => setGenre(event.target.value)}>
-        {Genre.OPTIONS.map((genre, key) => {
-          return (<option value={genre.code} key={key} >{genre.name}</option>)
-        })}
-      </select>
-      <br />
-      <form>
-        <label>お店の条件:</label>
-        {checkLists.map((item, index: number) => {
-          return (
-            <label htmlFor={`id_${index}`} key={`key_${index}`}>
-              <CheckBox
-                id={item.id}
-                value={item.label}
-                handleChange={handleChange}
-                checked={item.checked}
-              />
-              {item.label}
-            </label>
-          )
-        })}
-      </form>
-       {/* <p>位置情報から探す</p> */}
-          {!isFirstRef && !isAvailable && <p className="App-error-text">geolocation IS NOT available</p>}
-          {isAvailable && (
-            <div>
-              <button onClick={() => getCurrentPosition()}>位置情報から探す</button>
-              { isSearching ? <ReactLoading type="spin" /> : <span /> }
-            </div>
-          )}
-      </div>
+
+
+      <SearchByStationProps
+        searchByLocation={searchByLocation}
+        checkLists={checkLists}
+        setGenre={setGenre}
+        handleChange={handleChange}
+        isFirstRef={isFirstRef}
+        isAvailable={isAvailable}
+        isSearching={isSearching}
+        getCurrentPosition={getCurrentPosition}
+      />
+
+    
+
+
 
       <div style={{ display: searchByStation ? '' : 'none' }}>
         <label>都道府県:</label>
