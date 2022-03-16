@@ -1,15 +1,15 @@
-import React, {useState, useEffect, useRef} from 'react';
-import { ReactHTMLElement } from 'react';
-import Prefectures from '../prefectures.js';
-import axios from 'axios';
-import Button from '@mui/material/Button';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@mui/material/CardContent';
+import React, {useState, useEffect, useRef} from 'react'
+import { ReactHTMLElement } from 'react'
+import axios from 'axios'
+import Button from '@mui/material/Button'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
+import CardContent from '@mui/material/CardContent'
 import ReturnToStart from './ReturnToStart'
 import ShareButton from './ShareButton'
 import CheckBox from './CheckBox'
-import SearchByLocation from './SearchByLocation';
+import SearchByLocation from './SearchByLocation'
+import SearchByStation from './SearchByStation'
 import Genre from '../genre.js';
 
 type Recipe = {
@@ -822,55 +822,17 @@ const MessageWindow = function () {
         getCurrentPosition={getCurrentPosition}
       />
 
-    
-
-
-
-      <div style={{ display: isSearchByStation ? '' : 'none' }}>
-        <label>都道府県:</label>
-        <select defaultValue={'東京都'} onChange={event => setPrefecture(event.target.value)}>
-            {Prefectures.OPTIONS.map((option, key) => {
-              // if (key === 12) {
-              //   return (<option value={option} key={key} selected>{option}</option>) 
-              // } else {
-                return (<option value={option} key={key}>{option}</option>)
-              // }
-            })}
-        </select>
-        <br />
-        <label>駅名:</label>
-        <input
-            type="text"
-            value={station}
-            onChange={event => setStation(event.target.value)}
-        />
-        <br />
-        <label>お店の種類:</label>
-        <select onChange={event => setGenre(event.target.value)}>
-        {Genre.OPTIONS.map((genre, key) => {
-          return (<option value={genre.code} key={key} >{genre.name}</option>)
-        })}
-        </select>
-        <br />
-        <form>
-          <label>お店の条件:</label>
-          {checkLists.map((item, index: number) => {
-            return (
-              <label htmlFor={`id_${index}`} key={`key_${index}`}>
-                <CheckBox
-                  id={item.id}
-                  value={item.label}
-                  handleChange={handleChange}
-                  checked={item.checked}
-                />
-                {item.label}
-              </label>
-            )
-          })}
-        </form>
-        <button onClick={() => searchRestaurant()}>検索</button>
-      </div>
-        { 
+      <SearchByStation
+        isSearchByStation={isSearchByStation}
+        setPrefecture={setPrefecture}
+        station={station}
+        setStation={setStation}
+        setGenre={setGenre}
+        checkLists={checkLists}
+        handleChange={handleChange}
+        searchRestaurant={searchRestaurant}
+      />
+        {
           responseData.length ? shopInfo() : <div></div>
         }
      </div>
