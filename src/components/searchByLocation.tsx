@@ -9,7 +9,7 @@ type CheckListElement = {
   checked: boolean
 }
 
-type SearchByStationProps = {
+type searchByLocationProps = {
   searchByLocation: boolean;
   checkLists: Array<CheckListElement>;
   setGenre: React.Dispatch<React.SetStateAction<string>>;
@@ -20,7 +20,7 @@ type SearchByStationProps = {
   getCurrentPosition(): void;
 }
 
-const SearchByStationProps = function (props: SearchByStationProps) {
+const searchByLocation = function (props: searchByLocationProps) {
   return (
     <>
       <div style={{ display: props.searchByLocation ? '' : 'none' }}>
@@ -61,4 +61,4 @@ const SearchByStationProps = function (props: SearchByStationProps) {
   );
 };
 
-export default SearchByStationProps;
+export default searchByLocation;

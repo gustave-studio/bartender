@@ -9,7 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import ReturnToStart from './ReturnToStart'
 import ShareButton from './ShareButton'
 import CheckBox from './CheckBox'
-import SearchByStationProps from './SearchByStationProps'
+import SearchByLocation from './searchByLocation'
 import Genre from '../genre.js';
 
 type Recipe = {
@@ -811,7 +811,7 @@ const MessageWindow = function () {
 
 
 
-      <SearchByStationProps
+      <SearchByLocation
         searchByLocation={searchByLocation}
         checkLists={checkLists}
         setGenre={setGenre}
