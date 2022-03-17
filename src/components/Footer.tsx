@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Footer = function () {
   return (
     <div className="footer">
@@ -5,7 +7,7 @@ const Footer = function () {
         ©︎ Copyright 2022
         <br />
         <a href="http://gustave-studio.com/" target="_blank" rel="noreferrer">
-            Gustave Studio(ギュスターヴ スタジオ)
+          Gustave Studio(ギュスターヴ スタジオ)
         </a>
       </div>
     </div>
