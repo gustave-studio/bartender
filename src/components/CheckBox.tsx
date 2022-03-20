@@ -1,23 +1,27 @@
-import { BooleanLiteral } from "typescript";
+import React from 'react';
 
 type CheckBoxProps = {
   id: number;
   checked: boolean;
+  // eslint-disable-next-line no-unused-vars
   handleChange(id: number, checked: boolean): void;
   value: string;
 }
 
-const CheckBox = (props: CheckBoxProps) => {
+function CheckBox(props: CheckBoxProps) {
+  const {
+    id, checked, handleChange, value,
+  } = props;
   return (
     <input
-      id={`props.id`}
+      id="props.id"
       type="checkbox"
       name="inputNames"
-      checked={props.checked}
-      onChange={() => props.handleChange(props.id, !props.checked)}
-      value={props.value}
+      checked={checked}
+      onChange={() => handleChange(id, !checked)}
+      value={value}
     />
-  )
+  );
 }
 
 export default CheckBox;

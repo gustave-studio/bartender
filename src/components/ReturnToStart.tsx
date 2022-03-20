@@ -1,15 +1,23 @@
+import React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
 
-type ReturnToStartProps = {
-  resetState(): void;
-  setResponseData: React.Dispatch<React.SetStateAction<Array<never>>>;
+type ShopData = {
+  logo_image: string
+  urls_pc: string
+  shop_name: string
 }
 
-const ReturnToStart = function (props: ReturnToStartProps) {
+type ReturnToStartProps = {
+  resetState(): void;
+  setResponseData: React.Dispatch<React.SetStateAction<Array<ShopData>>>;
+}
+
+function ReturnToStart(props: ReturnToStartProps) {
+  const { resetState, setResponseData } = props;
+
   return (
-    <>
     <Grid container>
       <Grid item xs={3} />
       <Grid item xs={6}>
@@ -18,9 +26,9 @@ const ReturnToStart = function (props: ReturnToStartProps) {
             <Grid item container direction="column" spacing={0}>
               <Button
                 // style={{ backgroundColor: '#ff1493', color: '#FFFFFF', fontSize: '30px' }}
-                onClick={() => { 
-                  props.resetState()
-                  props.setResponseData([])
+                onClick={() => {
+                  resetState();
+                  setResponseData([]);
                 }}
               >
                 最初に戻る
@@ -31,8 +39,7 @@ const ReturnToStart = function (props: ReturnToStartProps) {
       </Grid>
       <Grid item xs={3} />
     </Grid>
-  </>
   );
-};
+}
 
 export default ReturnToStart;
