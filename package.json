@@ -19,6 +19,8 @@
     "aios": "^1.0.1",
     "axios": "^0.25.0",
     "axios-jsonp": "^1.0.4",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-plugin-import": "2.25.4",
     "firebase-tools": "10.1.4",
     "material-ui": "0.20.2",
     "react": "^17.0.2",
@@ -53,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-import-resolver-typescript": "^2.5.0"
   }
 }
