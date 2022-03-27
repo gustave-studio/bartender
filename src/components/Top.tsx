@@ -1,4 +1,5 @@
-import StartButton from './StartButton'
+import React from 'react';
+import StartButton from './StartButton';
 
 type TopPropsType = {
   setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,16 +8,17 @@ type TopPropsType = {
 }
 
 const Top = function (props: TopPropsType) {
+  const { setIsStarted, setPlaying } = props;
   const start = () => {
-    props.setIsStarted(true)
-    props.setPlaying(true)
+    setIsStarted(true);
+    setPlaying(true);
     // props.talking()
-  }
+  };
 
   return (
     <>
       <div className="top_screen">
-        <StartButton start={start}/>
+        <StartButton start={start} />
       </div>
       <div className="top_explanatory_container">
         <div className="top_explanatory_label_container">
@@ -45,7 +47,7 @@ const Top = function (props: TopPropsType) {
           <br />
           <br />
           <div className="center_image">
-            <img src="diagnose.png" alt="diagnose"/>
+            <img src="diagnose.png" alt="diagnose" />
           </div>
 
           <h3>- 近くにあるお店を探す -</h3>
@@ -55,7 +57,7 @@ const Top = function (props: TopPropsType) {
           <br />
           <br />
           <div className="center_image">
-            <img src="search_bar.png" alt="diagnose"/>
+            <img src="search_bar.png" alt="diagnose" />
           </div>
         </div>
       </div>
