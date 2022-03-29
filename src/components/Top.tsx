@@ -40,25 +40,28 @@ const Top = function (props: TopPropsType) {
           </h2>
         </div>
         <div className="top_explanatory_text">
-          <h3>- おすすめのお酒、おつまみを探す -</h3>
+          <div className="center_image">
+            <img src="explanatory_image.png" alt="diagnose" />
+          </div>
+          <h3>- ① 自分に合ったお酒を探したい -</h3>
           バーテンダーに「自分に合ったお酒を探したい」と伝えると、いくつか質問されます。
           <br />
           質問に答えて自分に合ったお酒を診断してもらいましょう！
           <br />
           <br />
-          <div className="center_image">
-            <img src="diagnose.png" alt="diagnose" />
-          </div>
-
-          <h3>- 近くにあるお店を探す -</h3>
+          <h3>- ② 家飲み用のおつまみが知りたい -</h3>
+          ①と同様にバーテンダーに「家飲み用のおつまみが知りたい」と伝えると、いくつか質問されます。
+          <br />
+          家飲みにピッタリなおつまみを見つけましょう！
+          <br />
+          <br />
+          <h3>- ③ 近くにいいお店がないか探したい -</h3>
           バーテンダーに「近くにいいお店がないか探したい」と伝えると、現在の位置情報、または、駅名から飲食店を探すことが出来ます。
           <br />
           バーテンダーは近所の飲食店に詳しいので、きっといいお店が見つかりますよ！
           <br />
           <br />
-          <div className="center_image">
-            <img src="search_bar.png" alt="diagnose" />
-          </div>
+          <br />
         </div>
       </div>
     </>

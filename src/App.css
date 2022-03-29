@@ -1,7 +1,8 @@
 body {
+  font-family: 'Slabo';
+  background: url("/public/skyscrapers-gee6dac507_1920.jpg") no-repeat;
+  /* background-repeat: no-repeat; */
   background-color: #000000;
-  background: url("/public/skyscrapers-gee6dac507_1920.jpg");
-  font-family: 'Slabo'; 
 }
 
 .header {
@@ -134,9 +135,9 @@ body {
 }
 
 .top_explanatory_container h3 {
-  text-align: center;
+  text-align: left;
   color: #333333;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .start_button {
