@@ -38,7 +38,10 @@ const searchByLocation = function (props: SearchByStationProps) {
         id="station"
         type="text"
         value={props.station}
-        onChange={(event) => props.setStation(event.target.value)}
+        onChange={(event) => {
+          props.setStation(event.target.value);
+          event.currentTarget.blur();
+        }}
       />
       <br />
       <label htmlFor="genre">お店の種類:</label>

@@ -62,6 +62,7 @@ const MessageWindow = function () {
   const [station, setStation] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [freeDrinkFlag, setFreeDrinkFlag] = useState(false);
+  const [searchCompleted, setSearchCompleted] = useState(false);
   const checkElement1: CheckListElement = {
     id: 1,
     label: '飲み放題あり',
@@ -92,9 +93,11 @@ const MessageWindow = function () {
     setSearchByStation(false);
     setCocktailIngredients([]);
     setCocktailsRecipes([]);
+    setStation('');
   };
 
   const selectMenu = (drink: string, key: number) => {
+    setDisplayReturnToStart(true);
     // カクテル
     if (choices[key] === 'カクテル') {
       setMessage('家でも楽しめるカクテルか、お店で飲むような本格的なカクテルどちらがよろしいですか？');
@@ -678,11 +681,12 @@ const MessageWindow = function () {
     await sleep(100);
     if (!result && !resultOfCocktail) {
       setDisplayChoices(true);
+      // setDisplayReturnToStart(true);
     } else if (resultOfCocktail) {
       setDisplayCocktailRecipie(true);
-      setDisplayReturnToStart(true);
+      // setDisplayReturnToStart(true);
     } else {
-      setDisplayReturnToStart(true);
+      // setDisplayReturnToStart(true);
     }
   };
 
@@ -746,8 +750,31 @@ const MessageWindow = function () {
   };
 
   const searchRestaurant = async () => {
+    console.log('検索開始');
+    setIsSearching(true);
+    const timer = setTimeout(() => {
+      // some action
+      console.log(
+        `10 seconds has passed. TimerID ${
+          String(timer)
+        } has finished.`,
+      );
+      if (searchCompleted === false && isSearching === true) {
+        console.log('!フラグ');
+        console.log(searchCompleted);
+        console.log(isSearching);
+        setMessage('通信状況が悪いようですね。もう一度お試し下さい。');
+      }
+    }, 3 * 1000);
+
+    if (station === '') {
+      setMessage('駅名を教えて下さい。');
+      return;
+    }
+
     await axios.get(`https://express.heartrails.com/api/json?method=getStations&name=${station}&prefecture=${prefecture}&free_drink=${freeDrinkFlag}&genre=${genre}`)
       .then((response: any) => {
+        setSearchCompleted(true);
         fetchHotpepperAPI(response.data.response.station[0].x, response.data.response.station[0].y);
       });
   };
@@ -853,13 +880,6 @@ const MessageWindow = function () {
           </div>
         )) }
 
-        {/* 結果画面からスタートへ戻る */}
-        <div className="result" style={{ display: displayReturnToStart ? '' : 'none' }}>
-          <ReturnToStart resetState={resetState} setResponseData={setResponseData} />
-          <br />
-          <ShareButton />
-        </div>
-
         <div className="choices" style={{ display: displayChoices ? '' : 'none' }}>
           {choices.map((choice) => (
             <span key={choice}>
@@ -928,6 +948,14 @@ const MessageWindow = function () {
         {
           responseData.length ? shopInfo() : <div />
         }
+
+        {/* 結果画面からスタートへ戻る */}
+        <br />
+        <div className="result" style={{ display: displayReturnToStart ? '' : 'none' }}>
+          <ReturnToStart resetState={resetState} setResponseData={setResponseData} />
+          <br />
+          <ShareButton />
+        </div>
       </div>
     </div>
   );
