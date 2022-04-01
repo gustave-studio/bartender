@@ -6,7 +6,7 @@ const Footer = function () {
       <div className="footer_text">
         ©︎ Copyright 2022
         <br />
-        <a href="http://gustave-studio.com/" target="_blank" rel="noreferrer">
+        <a href="https://gustave-studio.com/" target="_blank" rel="noreferrer">
           Gustave Studio(ギュスターヴ スタジオ)
         </a>
       </div>

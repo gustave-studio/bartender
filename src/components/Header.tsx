@@ -3,7 +3,9 @@ import React from 'react';
 const Header = function () {
   return (
     <div className="header">
-      <h1>イエノミ×バーテンダー</h1>
+      <a href="https://bartender.gustave-studio.com/" target="_blank" rel="noreferrer">
+        <h1>イエノミ×バーテンダー</h1>
+      </a>
     </div>
   );
 };

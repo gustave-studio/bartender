@@ -28,8 +28,13 @@ body {
   text-decoration: underline;
 }
 
+.header a {
+  text-decoration: none;
+}
+
 .header h1 {
   font-size: 25px;
+  color: #FFFFFF;
 }
 
 .footer {
