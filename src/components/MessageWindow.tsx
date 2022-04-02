@@ -406,7 +406,7 @@ const MessageWindow = function () {
 
     // 家飲み用のおつまみが知りたい > チーズの気分
     if (choices[key] === 'チーズの気分') {
-      setMessage('チーズコレクション アソート バルク 500gがおすすめです。\nこれ色んな種類のチーズが入っているので、飽きなくていいですよ。KALDIにもう少し小さいサイズが置いてあるのを見たので、近くにKALDIがある方は、小さいサイズで試してみると良いかもしれませんね。');
+      setMessage('チーズコレクション アソート バルク 500gがおすすめです。\n色んな種類のチーズが入っているので飽きなくていいですよ。輸入食品を取り扱っているお店でもう少し小さいサイズが置いてあるのを見たので、見かけたら小さいサイズで試してみると良いかもしれませんね。');
       setResult(true);
       setResultURL('https://www.amazon.co.jp/dp/B09MDZ52QF');
       setResultImage('https://images-fe.ssl-images-amazon.com/images/I/51gbTjM-uBL._AC_UL232_SR232,232_.jpg');
@@ -490,7 +490,7 @@ const MessageWindow = function () {
 
     // ワイン > 白ワイン > デザートのようなワイン
     if (choices[key] === 'デザートのようなワイン') {
-      setMessage('サンテロ　天使のアスティがおすすめです。\nこちらは甘口のスパークリングワインになります。\nすごく甘いくジュースのようなので、お食事というよりは、食後にデザートと一緒に飲まれると良いと思いますよ。');
+      setMessage('サンテロ　天使のアスティがおすすめです。\nこちらは甘口のスパークリングワインになります。\nすごく甘いジュースのようなので、お食事というよりは、食後にデザートと一緒に飲まれると良いと思いますよ。');
       setResult(true);
       setResultURL('https://www.amazon.co.jp/dp/B0036RAU68');
       setResultImage('https://images-fe.ssl-images-amazon.com/images/I/71n8Dxp8oCL._AC_UL232_SR232,232_.jpg');
@@ -824,7 +824,7 @@ const MessageWindow = function () {
                     <Card>
                       <CardContent>
                         <div key={data1.shop_name}>
-                          <a href={data1.urls_pc}>
+                          <a href={data1.urls_pc} target="_blank" rel="noreferrer">
                             {data1.shop_name}
                           </a>
                         </div>
@@ -850,9 +850,9 @@ const MessageWindow = function () {
       </div>
       <br />
 
-      <ReturnToStart resetState={resetState} setResponseData={setResponseData} />
-      <br />
-      <ShareButton />
+      {/* <ReturnToStart resetState={resetState} setResponseData={setResponseData} /> */}
+      {/* <br /> */}
+      {/* <ShareButton /> */}
     </div>
   );
 
@@ -862,7 +862,7 @@ const MessageWindow = function () {
         バーテンダー：
         {/* 通常の結果画像 */}
         <div className="result" style={{ display: result ? '' : 'none' }}>
-          <a href={resultURL}>
+          <a href={resultURL} target="_blank" rel="noreferrer">
             <img src={resultImage} alt="おすすめ結果" />
             <br />
             Amazonで購入
@@ -912,7 +912,7 @@ const MessageWindow = function () {
           <h3>材料を買う</h3>
           {cocktailIngredients.map((ingredient) => (
             <span key={ingredient.name}>
-              <a href={ingredient.url}>
+              <a href={ingredient.url} target="_blank" rel="noreferrer">
                 <img src={ingredient.image} alt="おすすめ結果" />
                 <br />
                 { ingredient.name }
