@@ -856,7 +856,7 @@ const MessageWindow = function () {
 
         }
       </div>
-      <div className="show_more_button">
+      <div className="show_more_button" style={{ display: loadIndex < responseData.length ? '' : 'none' }}>
         <Button
           disabled={isEmpty}
           onClick={displayMore}
