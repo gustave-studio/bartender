@@ -745,7 +745,7 @@ const MessageWindow = function () {
     })
       .then((response: any) => {
         console.log('ホットペッパー取得');
-        setMessage('この辺のお店はもう行きました？');
+        setMessage('この辺のお店はいかがでしょうか？');
         setResultOfSearches(true);
         if (response.data.results.results_available === 0) {
           setMessage('条件に一致するお店はありませんね。違う条件でもう一度探しましょうか。');
