@@ -12,16 +12,16 @@ const ShareButton = function () {
   return (
     <div className="share_button_container">
       <TwitterShareButton
-        url="https://bartender-58c12.web.app/"
+        url="https://bartender.gustave-studio.com/"
       >
         <TwitterIcon size={50} round />
       </TwitterShareButton>
       <FacebookShareButton
-        url="https://bartender-58c12.web.app/"
+        url="https://bartender.gustave-studio.com/"
       >
         <FacebookIcon size={50} round />
       </FacebookShareButton>
-      <LineShareButton url="https://bartender-58c12.web.app/">
+      <LineShareButton url="https://bartender.gustave-studio.com/">
         <LineIcon size={50} round />
       </LineShareButton>
     </div>
