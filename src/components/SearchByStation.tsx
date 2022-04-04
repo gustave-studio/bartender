@@ -40,7 +40,7 @@ const searchByLocation = function (props: SearchByStationProps) {
         value={props.station}
         onChange={(event) => {
           props.setStation(event.target.value);
-          event.currentTarget.blur();
+          // event.currentTarget.blur();
         }}
       />
       <br />

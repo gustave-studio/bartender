@@ -94,6 +94,8 @@ const MessageWindow = function () {
     setCocktailIngredients([]);
     setCocktailsRecipes([]);
     setStation('');
+    setIsEmpty(false);
+    setLoadIndex(5);
   };
 
   const selectMenu = (drink: string, key: number) => {
@@ -856,7 +858,7 @@ const MessageWindow = function () {
       </div>
       <div className="show_more_button">
         <Button
-          disabled={!!isEmpty}
+          disabled={isEmpty}
           onClick={displayMore}
           variant="contained"
         >
