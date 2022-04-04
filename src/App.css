@@ -145,11 +145,12 @@ body {
   font-size: 18px;
 }
 
-.start_button {
+.start_button Button{
   width: 30%;
   height: 25%;
   color: #ffffff;
   background-color: #ff3695;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,11 +159,6 @@ body {
   position: absolute;
   top: 40%;
   left: 35%;
-}
-
-.start_button button {
-  color: #FFFFFF;
-  font-size: 20px;
 }
 
 .start_text {

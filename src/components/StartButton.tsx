@@ -10,7 +10,7 @@ function StartButton(props: StartPropsType) {
   return (
     <>
       <div className="start_button">
-        <Button onClick={() => start()}>
+        <Button variant="contained" style={{ backgroundColor: '#ff3695' }} onClick={() => start()}>
           はじめる
         </Button>
       </div>
